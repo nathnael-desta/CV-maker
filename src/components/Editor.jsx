@@ -1,16 +1,12 @@
 import EditorCss from "../styles/Editor.module.css";
 import { Images } from "../utils";
-import NavButton from "./NavButton";
 import Input from "./Input";
 
 
 const Editor = () => {
   return (
     <div className={EditorCss.editor}>
-      <div className={EditorCss.navbar}>
-        <NavButton text="Design"/>
-        <NavButton text="Info"/>
-      </div>
+
       <div className={EditorCss.inputs}>
         <Input icon={Images.person} iconAlt={'person'} title={'Profile'}/>
         <Input icon={Images.education} iconAlt={'education'} title={'Education'}/>

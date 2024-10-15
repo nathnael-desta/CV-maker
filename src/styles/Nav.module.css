@@ -1,0 +1,14 @@
+.navbar {
+    width: 300px;
+    display: flex;
+    height: 200px;
+    flex-direction: column;
+    gap: 15px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.navbar > div {
+    flex: 1;
+}
