@@ -1,4 +1,5 @@
 import {Page, Text, Document, StyleSheet} from '@react-pdf/renderer';
+import PDFFileCSS from '../styles/PDFFile.module.css'
 
 const styles = StyleSheet.create({
     text: {
@@ -11,9 +12,9 @@ const styles = StyleSheet.create({
 
 const PDFFile = () => {
     return (
-    <Document>
+    <Document class={PDFFileCSS.document}>
         <Page size="A4">
-            <Text style={styles.text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore voluptatem perspiciatis officiis est veniam quibusdam repellat hic, id obcaecati molestiae voluptas sit repellendus itaque culpa eum veritatis esse modi!</Text>
+            <Text style={styles.text}></Text>
         </Page>
     </Document>
     )

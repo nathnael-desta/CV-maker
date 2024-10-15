@@ -1,11 +1,14 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFFile from './components/PDFFile';
+import Container from './components/Container';
+import AppCss from './styles/App.module.css';
+
 
 const App = () => {
 	return (
-		<div className="App">
-			<PDFFile />
+		<div className={AppCss.app}>
 
+      <Container />
 
       {/* <PDFDownloadLink document={<PDFFile />} fileName="FORM">
         {({ loading }) => (
