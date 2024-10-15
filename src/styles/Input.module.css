@@ -19,6 +19,7 @@
 .right {
   display: flex;
   align-items: center;
+  
 }
 
 .svgs {
@@ -32,4 +33,12 @@
 
 .smallest {
     width: 15px !important;
+}
+
+.rotated {  
+    transform: rotate(90deg);  
+}
+
+.arrow {
+    transition: transform 0.3s ease;
 }
