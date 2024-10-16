@@ -67,7 +67,7 @@ const Editor = () => {
       prevState.map((dropdown, i) =>
         i === index
           ? { ...dropdown, droppedDown: !dropdown.droppedDown }
-          : dropdown
+          : {...dropdown, droppedDown: false}
       )
     );
   }
