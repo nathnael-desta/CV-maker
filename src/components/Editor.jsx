@@ -1,23 +1,87 @@
+import { useState } from "react";
 import EditorCss from "../styles/Editor.module.css";
 import { Images } from "../utils";
 import Input from "./Input";
 
-
 const Editor = () => {
+  const [dropdowns, setDropdowns] = useState([
+    {
+      title: "General",
+      alt: "general",
+      name: "general",
+      droppedDown: false,
+    },
+    {
+      title: "Profile",
+      alt: "profile",
+      name: "profile",
+      droppedDown: false,
+    },
+    {
+      title: "Education",
+      alt: "education",
+      name: "education",
+      droppedDown: false,
+    },
+    {
+      title: "Contact",
+      alt: "contact",
+      name: "contact",
+      droppedDown: false,
+    },
+    {
+      title: "Work History",
+      alt: "work",
+      name: "work",
+      droppedDown: false,
+    },
+    { title: "Skills", alt: "skill", name: "skill", droppedDown: false },
+    {
+      title: "Projects",
+      alt: "project",
+      name: "project",
+      droppedDown: false,
+    },
+    {
+      title: "Courses",
+      alt: "course",
+      name: "course",
+      droppedDown: false,
+    },
+    {
+      title: "Interests",
+      alt: "interest",
+      name: "hobby",
+      droppedDown: false,
+    },
+    {
+      title: "Languages",
+      alt: "languages",
+      name: "language",
+      droppedDown: false,
+    },
+  ]);
+
+  const toggleDroppedDown = (index) => {
+    setDropdowns((prevState) =>
+      prevState.map((dropdown, i) =>
+        i === index
+          ? { ...dropdown, droppedDown: !dropdown.droppedDown }
+          : dropdown
+      )
+    );
+  }
+
   return (
     <div className={EditorCss.editor}>
-
       <div className={EditorCss.inputs}>
-        <Input icon={Images.general} iconAlt={'general'} title={'General'}/>  
-        <Input icon={Images.profile} iconAlt={'profile'} title={'Profile'}/>
-        <Input icon={Images.education} iconAlt={'education'} title={'Education'}/>
-        <Input icon={Images.contact} iconAlt={'contact'} title={'Contact'}/>
-        <Input icon={Images.work} iconAlt={'work'} title={'Work History'}/>
-        <Input icon={Images.skill} iconAlt={'skill'} title={'Skills'}/>
-        <Input icon={Images.project} iconAlt={'project'} title={'Projects'}/>
-        <Input icon={Images.course} iconAlt={'course'} title={'Courses'}/>
-        <Input icon={Images.hobby} iconAlt={'hobby'} title={'Interests'}/>
-        <Input icon={Images.language} iconAlt={'language'} title={'Languages'}/>
+        {dropdowns.map((dropdown, index) => 
+          <Input
+            key={index}
+            dropdown = {dropdown}
+            handleToggleDropdown={() => toggleDroppedDown(index)}
+          />
+        )}
       </div>
     </div>
   );

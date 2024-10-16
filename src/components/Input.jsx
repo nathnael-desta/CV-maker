@@ -2,15 +2,11 @@ import InputCss from "../styles/Input.module.css";
 import { Images } from "../utils";
 import { useState } from "react";
 
-const Input = ({ icon, iconAlt, title }) => {
-  const [expanded, setExpanded] = useState(false);
-
-  const toggleExpanded = () => {
-    setExpanded((prevExpanded) => !prevExpanded);
-  };
+const Input = ({ dropdown, handleToggleDropdown }) => {
+  const { name: icon, alt: iconAlt, title, droppedDown } = dropdown
 
   return (
-    <div className={InputCss.input} onClick={toggleExpanded}>
+    <div className={InputCss.input} onClick={handleToggleDropdown}>
       <div className={InputCss.topBar}>
         <div className={InputCss.left}>
           <div className={InputCss.imgContianer}>
@@ -22,7 +18,7 @@ const Input = ({ icon, iconAlt, title }) => {
                   ? InputCss.tiny
                   : null
               }`}
-              src={icon}
+              src={`${Images[icon]}`}
               alt={iconAlt}
             />
           </div>
@@ -31,19 +27,12 @@ const Input = ({ icon, iconAlt, title }) => {
         <div className={InputCss.right}>
           <img
             className={`${InputCss.arrow} ${
-              expanded ? InputCss.rotated : null
+              droppedDown ? InputCss.rotated : null
             }`}
             src={Images.rightArrow}
             alt="expand"
           />
         </div>
-      </div>
-      <div className={InputCss.dropdown}>
-        {title == "General" && (
-          <div>
-            
-          </div>
-        )}
       </div>
     </div>
   );
