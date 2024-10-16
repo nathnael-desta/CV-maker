@@ -1,18 +1,24 @@
 .input {
   display: flex;
-  height: 68px;
   width: 100%;
   justify-content: space-between;
-  padding: 23px;
+  padding: 13px 18px;
   align-items: center;
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
 
+.topBar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .left {
   display: flex;
-  gap: 8px;
+  gap: 15px;
   align-items: center;
 }
 
@@ -33,6 +39,12 @@
 
 .smallest {
     width: 15px !important;
+    height: auto;
+}
+
+.tiny {
+    width: 7px !important;
+    height: auto;
 }
 
 .rotated {  
@@ -41,4 +53,11 @@
 
 .arrow {
     transition: transform 0.3s ease;
+}
+
+.imgContianer {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

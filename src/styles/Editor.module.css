@@ -8,6 +8,7 @@
     display: flex;
     gap: 15px;
     flex-direction: column;
+    overflow: hidden;
 
 }
 .inputs {
@@ -18,4 +19,11 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    overflow: scroll;
+
 }
+
+.inputs::-webkit-scrollbar {
+    display: none;
+}
+

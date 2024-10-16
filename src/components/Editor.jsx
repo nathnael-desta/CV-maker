@@ -8,7 +8,8 @@ const Editor = () => {
     <div className={EditorCss.editor}>
 
       <div className={EditorCss.inputs}>
-        <Input icon={Images.person} iconAlt={'person'} title={'Profile'}/>
+        <Input icon={Images.general} iconAlt={'general'} title={'General'}/>  
+        <Input icon={Images.profile} iconAlt={'profile'} title={'Profile'}/>
         <Input icon={Images.education} iconAlt={'education'} title={'Education'}/>
         <Input icon={Images.contact} iconAlt={'contact'} title={'Contact'}/>
         <Input icon={Images.work} iconAlt={'work'} title={'Work History'}/>

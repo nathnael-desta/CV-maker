@@ -38,7 +38,5 @@ const data = {
         // }
     ],
     interests: [],
-    languages: []
-    
-
+    languages: [],
 }

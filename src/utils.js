@@ -1,5 +1,5 @@
 export const Images = {
-    person: "src/assets/images/person.svg",
+    profile: "src/assets/images/profile.svg",
     rightArrow: "src/assets/images/rightArrow.png",
     add: "src/assets/images/add.svg",
     course: "src/assets/images/course.svg",
@@ -17,6 +17,7 @@ export const Images = {
     left: "src/assets/images/left.svg",
     topSplit: "src/assets/images/topSplit.svg",
     top: "src/assets/images/top.svg",
-    topColored: "src/assets/images/topColored.svg"
+    topColored: "src/assets/images/topColored.svg",
+    general: "src/assets/images/general.svg"
 
 }
