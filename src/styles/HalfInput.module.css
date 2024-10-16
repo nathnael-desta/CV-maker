@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    width: 100%;
+    margin-left: 20px;
+
+}
+
+.subContainer {
+    flex: 1;
+    display: flex;
+    justify-content: start;
+    padding: 12px;
+    align-items: center;
+    gap: 15px;
+}
+
+.left {
+    width: 30px;
+}
+
+.right {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 8px;
+    height: 35px;
+    width: 75px;
+    font-size: 1.15rem;
+    padding: 5px 15px;
+}

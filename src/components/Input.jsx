@@ -1,13 +1,18 @@
 import InputCss from "../styles/Input.module.css";
 import { Images } from "../utils";
 import { useState } from "react";
+import FullInput from "./FullInput";
+import HalfInput from "./HalfInput";
+import Description from "./Description";
+import SmallView from "./SmallView";
+import ListItem from "./ListItem";
 
 const Input = ({ dropdown, handleToggleDropdown }) => {
   const { name: icon, alt: iconAlt, title, droppedDown } = dropdown
 
   return (
-    <div className={InputCss.input} onClick={handleToggleDropdown}>
-      <div className={InputCss.topBar}>
+    <div className={InputCss.input}>
+      <div className={InputCss.topBar} onClick={handleToggleDropdown}>
         <div className={InputCss.left}>
           <div className={InputCss.imgContianer}>
             <img
@@ -34,6 +39,7 @@ const Input = ({ dropdown, handleToggleDropdown }) => {
           />
         </div>
       </div>
+      {droppedDown && <ListItem text={"JavaScript"}/>}
     </div>
   );
 };

@@ -1,0 +1,14 @@
+.text {
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    font-size: 1.15rem;
+    border-radius: 8px;
+    resize: none;
+    overflow: scroll;
+    margin-left: 20px;
+}
+
+.text::-webkit-scrollbar {
+    display: none;
+  }

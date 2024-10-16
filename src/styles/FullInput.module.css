@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: start;
+    padding: 12px;
+    align-items: center;
+    gap: 15px;
+    margin-left: 20px;
+}
+
+.left {
+    width: 90px;
+}
+
+.right {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 8px;
+    height: 40px;
+    width: 250px;
+    font-size: 1.15rem;
+    padding: 5px 15px;
+}
