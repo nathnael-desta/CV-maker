@@ -1,116 +1,80 @@
 import FullInput from "./components/FullInput"
 
-const data = {
-    general: {
-        firstName: '',
-        lastName: '',
-        title: ''
-    },
-    profile: '',
-    contact: {
-        adress: '',
-        email: '',
-        phoneNo: ''
-    },
-    work: [
-        // {
-        //     companyName: '',
-        //     postion: '',
-        //     details: '',
-        //     start: '',
-        //     end: ''
-        // }
-    ],
-    skills: [],
-    projects: [
-        // {
-        //     title: '',
-        //     details: '',
-        //     start: '',
-        //     end: ''
-        // }
-    ],
-    courses: [
-        // {
-        //     courseName: '',
-        //     offeredBy: '',
-        //     details: '',
-        //     start: '',
-        //     end: ''
-        // }
-    ],
-    interests: [],
-    languages: [],
-}
-
 export const arrangements = {
     general: [
         {
-            type: 'FullInput',
-            props: { text: 'First Name' }
+            inputKind: 'FullInput',
+            props: { text: 'First Name', inputName: 'firstName' }
         },
         {
-            type: 'FullInput',
-            props: { text: 'Last Name' }
+            inputKind: 'FullInput',
+            props: { text: 'Last Name', inputName: 'lastName' }
         },
         {
-            type: 'FullInput',
-            props: { text: 'Title' }
+            inputKind: 'FullInput',
+            props: { text: 'Title', inputName: 'title' }
         }
     ],
     profile: [
         {
-            type: 'Description',
-            props: { text: 'Title' }
+            inputKind: 'Description',
+            props: { text: 'Title', inputName: 'profile' }
         }
     ],
     contact: [
         {
-            type: 'FullInput',
-            props: { text: 'Adress' }
+            inputKind: 'FullInput',
+            props: { text: 'Adress', inputName: 'adress' }
         },
         {
-            type: 'FullInput',
-            props: { text: 'Email' }
+            inputKind: 'FullInput',
+            props: { text: 'Email', inputName: 'email' }
         },
         {
-            type: 'FullInput',
-            props: { text: 'Phone No' }
+            inputKind: 'FullInput',
+            props: { text: 'Phone No', inputName: 'phoneNo' }
         }
     ],
     education: [
         {
-            type: 'Add',
+            inputKind: 'Add',
+            props: { inputName: '' }
         }
     ],
     work: [
         {
-            type: 'Add',
+            inputKind: 'Add',
+            props: { inputName: '' }
         }
     ],
     skill: [
         {
-            type: 'Add',
+            inputKind: 'Add',
+            props: { inputName: '' }
         }
     ],
     project: [
         {
-            type: 'Add',
+            inputKind: 'Add',
+            props: { inputName: '' }
         }
     ],
     course: [
         {
-            type: 'Add',
+            inputKind: 'Add',
+            props: { inputName: '' }
         }
     ],
     interest: [
         {
-            type: 'Add',
+            inputKind: 'Add',
+            props: { inputName: '' }
         }
     ],
     language: [
         {
-            type: 'Add',
+            inputKind: 'Add',
+            props: { inputName: '' }
         }
     ],
 

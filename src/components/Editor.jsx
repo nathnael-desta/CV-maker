@@ -10,7 +10,7 @@ import SmallView from "./SmallView";
 import ListItem from "./ListItem";
 import Add from "./Add";
 
-const Editor = () => {
+const Editor = (props) => {
 
 
 
@@ -100,6 +100,7 @@ const Editor = () => {
             key={index}
             dropdown = {dropdown}
             handleToggleDropdown={() => toggleDroppedDown(index)}
+            { ...props }
           />
 
         )}
