@@ -6,9 +6,20 @@ import HalfInput from "./HalfInput";
 import Description from "./Description";
 import SmallView from "./SmallView";
 import ListItem from "./ListItem";
+import Add from "./Add";
+import { arrangements } from "../Data";
 
 const Input = ({ dropdown, handleToggleDropdown }) => {
-  const { name: icon, alt: iconAlt, title, droppedDown } = dropdown
+  const { name: icon, alt: iconAlt, title, droppedDown, type } = dropdown
+
+  const componentMap = {
+    FullInput,
+    HalfInput,
+    Description,
+    SmallView,
+    ListItem,
+    Add
+  }
 
   return (
     <div className={InputCss.input}>
@@ -39,7 +50,11 @@ const Input = ({ dropdown, handleToggleDropdown }) => {
           />
         </div>
       </div>
-      {droppedDown && <ListItem text={"JavaScript"}/>}
+      {droppedDown && arrangements[type].map((item, index) => {
+        const Component = componentMap[item.type]
+
+        return <Component key={index} {...item.props} />
+      })}
     </div>
   );
 };
