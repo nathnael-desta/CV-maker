@@ -53,7 +53,7 @@ const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData}) => {
       {droppedDown && arrangements[type].map((item, index) => {
         const Component = componentMap[item.inputKind]
 
-        return <Component key={index} {...item.props} handleChangeData={handleChangeData} type={type} />
+        return <Component key={index} {...item.props} handleChangeData={handleChangeData} type={type} data={data}/>
       })}
     </div>
   );

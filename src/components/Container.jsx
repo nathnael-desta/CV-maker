@@ -26,8 +26,8 @@ const Container = () => {
       //     end: ''
       // }
     ],
-    skills: [],
-    projects: [
+    skill: [],
+    project: [
       // {
       //     title: '',
       //     details: '',
@@ -35,7 +35,7 @@ const Container = () => {
       //     end: ''
       // }
     ],
-    courses: [
+    course: [
       // {
       //     courseName: '',
       //     offeredBy: '',
@@ -44,8 +44,8 @@ const Container = () => {
       //     end: ''
       // }
     ],
-    interests: [],
-    languages: [],
+    interest: [],
+    language: [],
   });
 
   const changeData = (group, input, value) => {
