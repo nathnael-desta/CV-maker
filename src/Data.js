@@ -13,7 +13,12 @@ export const arrangements = {
         {
             inputKind: 'FullInput',
             props: { text: 'Title', inputName: 'title' }
-        }
+        },
+        {
+            inputKind: 'HalfInput',
+            props: { firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'
+             }
+        },
     ],
     profile: [
         {

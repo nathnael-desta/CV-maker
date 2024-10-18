@@ -10,6 +10,8 @@ const Container = () => {
       firstName: "",
       lastName: "",
       title: "",
+      start: "",
+      end: ""
     },
     profile: "",
     contact: {
@@ -57,12 +59,13 @@ const Container = () => {
     console.log(data)
   }
 
+
+
   const changeDescription = (group, value) => {
     setData((prevData) => ({
       ...prevData,
       [group]: value
     }))
-    console.log(data)
   }
 
   return (
