@@ -3,6 +3,7 @@ import ContainerCss from "../styles/Container.module.css";
 import PDFFile from "./PDFFile";
 import Nav from "./Nav";
 import { useState } from "react";
+import Popup from "./Popup";
 
 const Container = () => {
   const [data, setData] = useState({
@@ -10,8 +11,6 @@ const Container = () => {
       firstName: "",
       lastName: "",
       title: "",
-      start: "",
-      end: ""
     },
     profile: "",
     contact: {
@@ -53,26 +52,38 @@ const Container = () => {
   const changeData = (group, input, value) => {
     setData((prevData) => ({
       ...prevData,
-      [group]: { ...prevData[group], [input]: value}
-    }))
-    
-    console.log(data)
-  }
+      [group]: { ...prevData[group], [input]: value },
+    }));
 
-
+    console.log(data);
+  };
 
   const changeDescription = (group, value) => {
     setData((prevData) => ({
       ...prevData,
-      [group]: value
-    }))
-  }
+      [group]: value,
+    }));
+  };
 
   return (
     <div className={ContainerCss.container}>
       <Nav />
-      <Editor data={data} handleChangeData={(type, input, value) => changeData(type, input, value)} handleChangeDescription={(type, value) => changeDescription(type, value)}/>
+      <Editor
+        data={data}
+        handleChangeData={(type, input, value) =>
+          changeData(type, input, value)
+        }
+        handleChangeDescription={(type, value) =>
+          changeDescription(type, value)
+        }
+      />
       <PDFFile />
+      <Popup
+        handleChangeData={(type, input, value) =>
+          changeData(type, input, value)
+        }
+        data={data}
+      />
     </div>
   );
 };
