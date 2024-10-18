@@ -9,7 +9,7 @@ import ListItem from "./ListItem";
 import Add from "./Add";
 import { arrangements } from "../Data";
 
-const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData}) => {
+const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleChangeDescription}) => {
   const { name: icon, alt: iconAlt, title, droppedDown, type } = dropdown
 
   const componentMap = {
@@ -53,7 +53,7 @@ const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData}) => {
       {droppedDown && arrangements[type].map((item, index) => {
         const Component = componentMap[item.inputKind]
 
-        return <Component key={index} {...item.props} handleChangeData={handleChangeData} type={type} data={data}/>
+        return <Component key={index} {...item.props} handleChangeData={handleChangeData} handleChangeDescription={handleChangeDescription} type={type} data={data}/>
       })}
     </div>
   );

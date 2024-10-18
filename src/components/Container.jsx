@@ -57,10 +57,18 @@ const Container = () => {
     console.log(data)
   }
 
+  const changeDescription = (group, value) => {
+    setData((prevData) => ({
+      ...prevData,
+      [group]: value
+    }))
+    console.log(data)
+  }
+
   return (
     <div className={ContainerCss.container}>
       <Nav />
-      <Editor data={data} handleChangeData={(type, input, value) => changeData(type, input, value)}/>
+      <Editor data={data} handleChangeData={(type, input, value) => changeData(type, input, value)} handleChangeDescription={(type, value) => changeDescription(type, value)}/>
       <PDFFile />
     </div>
   );
