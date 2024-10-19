@@ -18,16 +18,29 @@ const Container = () => {
       email: "",
       phoneNo: "",
     },
+    eduction: [
+      // {
+      //   name: '',
+      //   offeredBy: '',
+      //   details: '',
+      //   start: '',
+      //   end: ''
+      // }
+    ],
     work: [
       // {
-      //     companyName: '',
+      //     company: '',
       //     postion: '',
       //     details: '',
       //     start: '',
       //     end: ''
       // }
     ],
-    skill: [],
+    skill: [
+      // {
+      //   skillName: ''
+      // }
+    ],
     project: [
       // {
       //     title: '',
@@ -38,15 +51,23 @@ const Container = () => {
     ],
     course: [
       // {
-      //     courseName: '',
+      //     name: '',
       //     offeredBy: '',
       //     details: '',
       //     start: '',
       //     end: ''
       // }
     ],
-    interest: [],
-    language: [],
+    interest: [
+      // {
+      //   interestName: ''
+      // }
+    ],
+    language: [
+      // {
+      //   languageName: ''
+      // }
+    ],
   });
 
   const changeData = (group, input, value) => {

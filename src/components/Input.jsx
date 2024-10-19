@@ -8,6 +8,7 @@ import SmallView from "./SmallView";
 import ListItem from "./ListItem";
 import Add from "./Add";
 import { arrangements } from "../Data";
+import Confirm from "./Confirm";
 
 const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleChangeDescription}) => {
   const { name: icon, alt: iconAlt, title, droppedDown, type } = dropdown
@@ -18,7 +19,8 @@ const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleC
     Description,
     SmallView,
     ListItem,
-    Add
+    Add,
+    Confirm
   }
 
   return (
