@@ -4,11 +4,23 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border: 1px black solid;
-    padding: 30px;
     border-radius: 10px;
+    background-color: white;
+
+}
+
+.inside {
+    padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 30px;
-    background-color: white;
+    position: relative;
+}
 
+.close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 17px;
+    cursor: pointer;
 }

@@ -70,6 +70,10 @@ const Container = () => {
     ],
   });
 
+  const [popup, setPopup] = useState({
+    isShown: false
+  })
+
   const changeData = (group, input, value) => {
     setData((prevData) => ({
       ...prevData,
@@ -86,6 +90,17 @@ const Container = () => {
     }));
   };
 
+  const changePopup = (isShown) => {
+    setPopup((prevPopup) => ({
+      ...prevPopup, 
+      isShown: isShown
+    }))
+  }
+
+
+
+
+
   return (
     <div className={ContainerCss.container}>
       <Nav />
@@ -97,14 +112,16 @@ const Container = () => {
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
+        handleChangePopup={(isShown) => changePopup(isShown)}
       />
       <PDFFile />
-      <Popup
+      { popup.isShown && <Popup
         handleChangeData={(type, input, value) =>
           changeData(type, input, value)
         }
         data={data}
-      />
+        handleChangePopup={(isShown) => changePopup(isShown)}
+      />}
     </div>
   );
 };
