@@ -38,160 +38,210 @@ export const arrangements = {
     education: [
         {
             inputKind: 'Add',
-            props: { inputName: '' }
+            props: { inputName: 'education' }
         }
     ],
     work: [
         {
             inputKind: 'Add',
-            props: { inputName: '' }
+            props: { inputName: 'work' }
         }
     ],
     skill: [
         {
             inputKind: 'Add',
-            props: { inputName: '' }
+            props: { inputName: 'skill' }
         }
     ],
     project: [
         {
             inputKind: 'Add',
-            props: { inputName: '' }
+            props: { inputName: 'project' }
         }
     ],
     course: [
         {
             inputKind: 'Add',
-            props: { inputName: '' }
+            props: { inputName: 'course' }
         }
     ],
     interest: [
         {
             inputKind: 'Add',
-            props: { inputName: '' }
+            props: { inputName: 'interest' }
         }
     ],
     language: [
         {
             inputKind: 'Add',
-            props: { inputName: '' }
+            props: { inputName: 'language' }
         }
     ],
 }
 
 export const popups = {
-    education: [
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Name', inputName: 'name' }
-        },
-        {
-            inputKind: 'FullInput',
-            props: { text: 'OfferedBy', inputName: 'offeredBy' }
-        },
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Details', inputName: 'details' }
-        },
-        {
-            inputKind: 'HalfInput',
-            props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
-        },
-        {
-            inputKind: 'Confirm',
-            props: {}
+    education: {
+        inputs: [
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Name', inputName: 'name' }
+            },
+            {
+                inputKind: 'FullInput',
+                props: { text: 'OfferedBy', inputName: 'offeredBy' }
+            },
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Details', inputName: 'details' }
+            },
+            {
+                inputKind: 'HalfInput',
+                props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
+            },
+            {
+                inputKind: 'Confirm',
+                props: {}
+            }
+        ],
+        data: {   
+            name: '',
+            offeredBy: '',
+            details: '',
+            start: '',
+            end: ''
         }
-    ],
-    work: [
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Company', inputName: 'company' }
-        },
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Position', inputName: 'position' }
-        },
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Details', inputName: 'details' }
-        },
-        {
-            inputKind: 'HalfInput',
-            props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
-        },
-        {
-            inputKind: 'Confirm',
-            props: {}
+    },
+    work: {
+        inputs: [
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Company', inputName: 'company' }
+            },
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Position', inputName: 'position' }
+            },
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Details', inputName: 'details' }
+            },
+            {
+                inputKind: 'HalfInput',
+                props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
+            },
+            {
+                inputKind: 'Confirm',
+                props: {}
+            }
+        ],
+        data: {   
+            company: '',
+            position: '',
+            details: '',
+            start: '',
+            end: ''
         }
-    ],
-    skill: [
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Skill', inputName: 'skillName' }
-        },
-        {
-            inputKind: 'Confirm',
-            props: {}
+    },
+    skill: {
+        inputs: [
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Skill', inputName: 'skillName' }
+            },
+            {
+                inputKind: 'Confirm',
+                props: {}
+            }
+        ],
+        data: {   
+            skillName: '',
         }
-    ],
-    project: [
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Title', inputName: 'title' }
-        },
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Details', inputName: 'details' }
-        },
-        {
-            inputKind: 'HalfInput',
-            props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
-        },
-        {
-            inputKind: 'Confirm',
-            props: {}
+    },
+    project: {
+        inputs: [
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Title', inputName: 'title' }
+            },
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Details', inputName: 'details' }
+            },
+            {
+                inputKind: 'HalfInput',
+                props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
+            },
+            {
+                inputKind: 'Confirm',
+                props: {}
+            }
+        ],
+        data: {   
+            title: '',
+            details: '',
+            start: '',
+            end: ''
         }
-    ],
-    course: [
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Name', inputName: 'name' }
-        },
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Offered By', inputName: 'offeredBy' }
-        },
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Details', inputName: 'details' }
-        },
-        {
-            inputKind: 'HalfInput',
-            props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
-        },
-        {
-            inputKind: 'Confirm',
-            props: {}
+    },
+    course: {
+        inputs: [
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Name', inputName: 'name' }
+            },
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Offered By', inputName: 'offeredBy' }
+            },
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Details', inputName: 'details' }
+            },
+            {
+                inputKind: 'HalfInput',
+                props: {firstText: 'Start', secondText: 'End', inputName1: 'start', inputName2: 'end'}
+            },
+            {
+                inputKind: 'Confirm',
+                props: {}
+            }
+        ],
+        data: {   
+            name: '',
+            offeredBy: '',
+            details: '',
+            start: '',
+            end: ''
         }
-    ],
-    skill: [
-        {
-            inputKind: 'FullInput',
-            props: { text: 'Interest', inputName: 'interestName' }
-        },
-        {
-            inputKind: 'Confirm',
-            props: {}
+    },
+    interest: {
+        inputs: [
+            {
+                inputKind: 'FullInput',
+                props: { text: 'Interest', inputName: 'interestName' }
+            },
+            {
+                inputKind: 'Confirm',
+                props: {}
+            }
+        ],
+        data: {   
+            interestName: ''
         }
-    ],
-    skill: [
-        {
-            inputKind: 'FullInput',
-            props: { text: 'language', inputName: 'languageName' }
-        },
-        {
-            inputKind: 'Confirm',
-            props: {}
+    },
+    language: {
+        inputs: [
+            {
+                inputKind: 'FullInput',
+                props: { text: 'language', inputName: 'languageName' }
+            },
+            {
+                inputKind: 'Confirm',
+                props: {}
+            }
+        ],
+        data: {   
+            languageName: ''
         }
-    ]
+    }
 }

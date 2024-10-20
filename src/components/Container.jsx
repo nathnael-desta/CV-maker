@@ -18,7 +18,7 @@ const Container = () => {
       email: "",
       phoneNo: "",
     },
-    eduction: [
+    education: [
       // {
       //   name: '',
       //   offeredBy: '',
@@ -71,7 +71,8 @@ const Container = () => {
   });
 
   const [popup, setPopup] = useState({
-    isShown: false
+    isShown: false,
+    input: ''
   })
 
   const changeData = (group, input, value) => {
@@ -90,10 +91,12 @@ const Container = () => {
     }));
   };
 
-  const changePopup = (isShown) => {
+  const changePopup = (isShown, inputName) => {
+    console.log(inputName, '.............................')
     setPopup((prevPopup) => ({
       ...prevPopup, 
-      isShown: isShown
+      isShown: isShown,
+      input: inputName
     }))
   }
 
@@ -106,13 +109,14 @@ const Container = () => {
       <Nav />
       <Editor
         data={data}
+        popup={popup}
         handleChangeData={(type, input, value) =>
           changeData(type, input, value)
         }
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
-        handleChangePopup={(isShown) => changePopup(isShown)}
+        handleChangePopup={(isShown, inputName) => changePopup(isShown, inputName)}
       />
       <PDFFile />
       { popup.isShown && <Popup
@@ -120,7 +124,8 @@ const Container = () => {
           changeData(type, input, value)
         }
         data={data}
-        handleChangePopup={(isShown) => changePopup(isShown)}
+        handleChangePopup={(isShown, inputName) => changePopup(isShown, inputName)}
+        popup={popup}
       />}
     </div>
   );

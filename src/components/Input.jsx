@@ -10,7 +10,7 @@ import Add from "./Add";
 import { arrangements } from "../Data";
 import Confirm from "./Confirm";
 
-const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleChangeDescription, handleChangePopup}) => {
+const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleChangeDescription, handleChangePopup, popup}) => {
   const { name: icon, alt: iconAlt, title, droppedDown, type } = dropdown
 
   const componentMap = {
@@ -54,8 +54,7 @@ const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleC
       </div>
       {droppedDown && arrangements[type].map((item, index) => {
         const Component = componentMap[item.inputKind]
-
-        return <Component key={index} {...item.props} handleChangeData={handleChangeData} handleChangeDescription={handleChangeDescription} type={type} data={data} handleChangePopup={handleChangePopup}/>
+        return <Component key={index} {...item.props} handleChangeData={handleChangeData} handleChangeDescription={handleChangeDescription} type={type} data={data} handleChangePopup={handleChangePopup} popup={popup}/>
       })}
     </div>
   );
