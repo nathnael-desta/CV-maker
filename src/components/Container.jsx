@@ -81,7 +81,6 @@ const Container = () => {
       [group]: { ...prevData[group], [input]: value },
     }));
 
-    console.log(data);
   };
 
   const changeDescription = (group, value) => {
@@ -92,7 +91,6 @@ const Container = () => {
   };
 
   const changePopup = (isShown, inputName) => {
-    console.log(inputName, '.............................')
     setPopup((prevPopup) => ({
       ...prevPopup, 
       isShown: isShown,

@@ -19,10 +19,10 @@ const Popup = ({ handleChangeData, data, handleChangePopup, popup }) => {
         Add,
         Confirm
       }
-      console.log(popup, 'asofdasofjdal;sdfjkadsf;lj')
     const [ popupData, setPopupData] = useState(popups[popup.input].data)
 
     const changePopupData = (inputName, value) => {
+        console.log(popupData, '1812344444')
         setPopupData((prevPopupData) => ({
             ...prevPopupData,
             [inputName]: value
@@ -41,7 +41,7 @@ const Popup = ({ handleChangeData, data, handleChangePopup, popup }) => {
         {popups[popup.input].inputs.map((item, index) => {
             const Component = componentMap[item.inputKind]
 
-            return <Component key={index} {...item.props} data={data} type={popup.input} handlePopupData={(inputName, value) => changePopupData(inputName, value)}/>
+            return <Component key={index} from='popup' {...item.props} data={data} type={popup.input} handlePopupData={(inputName, value) => changePopupData(inputName, value)}/>
         })}
         {/* <FullInput
           text="Field"

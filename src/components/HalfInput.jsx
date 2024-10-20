@@ -1,16 +1,24 @@
 import HalfInputCss from "../styles/HalfInput.module.css";
 
-const HalfInput = ({ firstText, secondText, inputName1, inputName2, data, type, handleChangeData }) => {
+const HalfInput = ({ firstText, secondText, inputName1, inputName2, data, type, handleChangeData, from, handlePopupData }) => {
     const handleInputChange1 = (event) => {
         const inputValue = event.target.value;
 
-        handleChangeData(type, inputName1, inputValue)
+        if (from == 'popup') {
+            handlePopupData(inputName1, inputValue)
+        } else {
+            handleChangeData(type, inputName1, inputValue)
+        }
     }
 
     const handleInputChange2 = (event) => {
         const inputValue = event.target.value;
 
-        handleChangeData(type, inputName2, inputValue)
+        if (from == 'popup') {
+            handlePopupData(inputName2, inputValue)
+        } else {
+            handleChangeData(type, inputName2, inputValue)
+        }
     }
 
   return (

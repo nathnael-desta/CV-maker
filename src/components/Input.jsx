@@ -54,7 +54,7 @@ const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleC
       </div>
       {droppedDown && arrangements[type].map((item, index) => {
         const Component = componentMap[item.inputKind]
-        return <Component key={index} {...item.props} handleChangeData={handleChangeData} handleChangeDescription={handleChangeDescription} type={type} data={data} handleChangePopup={handleChangePopup} popup={popup}/>
+        return <Component key={index} from='input' {...item.props} handleChangeData={handleChangeData} handleChangeDescription={handleChangeDescription} type={type} data={data} handleChangePopup={handleChangePopup} popup={popup}/>
       })}
     </div>
   );
