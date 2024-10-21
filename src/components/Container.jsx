@@ -98,7 +98,14 @@ const Container = () => {
     }))
   }
 
+  const appendToData = (inputName, object) => {
+        console.log(data, "...............")
 
+        setData((prevData) => ({
+          ...prevData,
+          [inputName]: [ ...prevData[inputName], object]
+        }))
+  }
 
 
 
@@ -115,6 +122,7 @@ const Container = () => {
           changeDescription(type, value)
         }
         handleChangePopup={(isShown, inputName) => changePopup(isShown, inputName)}
+        handleAppendToData={(inputName, object) => appendToData(inputName, object)}
       />
       <PDFFile />
       { popup.isShown && <Popup
@@ -124,6 +132,7 @@ const Container = () => {
         data={data}
         handleChangePopup={(isShown, inputName) => changePopup(isShown, inputName)}
         popup={popup}
+        handleAppendToData={(inputName, object) => appendToData(inputName, object)}
       />}
     </div>
   );
