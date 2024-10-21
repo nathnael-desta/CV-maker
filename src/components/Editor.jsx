@@ -11,22 +11,19 @@ import ListItem from "./ListItem";
 import Add from "./Add";
 
 const Editor = (props) => {
-  const {dropdowns, toggleDroppedDown} = props
-
+  const { dropdowns, toggleDroppedDown } = props;
 
   return (
     <div className={EditorCss.editor}>
       <div className={EditorCss.inputs}>
-        {dropdowns.map((dropdown, index) => 
-
+        {dropdowns.map((dropdown, index) => (
           <Input
             key={index}
-            dropdown = {dropdown}
+            dropdown={dropdown}
             handleToggleDropdown={() => toggleDroppedDown(index)}
-            { ...props }
+            {...props}
           />
-
-        )}
+        ))}
       </div>
     </div>
   );

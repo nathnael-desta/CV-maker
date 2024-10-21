@@ -1,11 +1,11 @@
 import MiniViewCss from '../styles/MiniView.module.css'
 
 
-const MiniView = () => {
+const MiniView = ({ title }) => {
     return (
         <div className={MiniViewCss.container}>
             <div className={MiniViewCss.left}>
-                Addis Ababa University
+                {title}
             </div>
             <div className={MiniViewCss.right}>
                 <img src="src/assets/images/eye.svg" alt="unshow" />
