@@ -9,26 +9,32 @@ import Add from "./Add";
 import Confirm from "./Confirm";
 import { useState } from "react";
 
-const Popup = ({ handleChangeData, data, handleChangePopup, popup, handleAppendToData}) => {
-    const componentMap = {
-        FullInput,
-        HalfInput,
-        Description,
-        SmallView,
-        ListItem,
-        Add,
-        Confirm
-      }
-    const [ popupData, setPopupData] = useState(popups[popup.input].data)
+const Popup = ({
+  handleChangeData,
+  data,
+  handleChangePopup,
+  popup,
+  handleAppendToData,
+  handleAppendMiniview,
+  dropdowns
+}) => {
+  const componentMap = {
+    FullInput,
+    HalfInput,
+    Description,
+    SmallView,
+    ListItem,
+    Add,
+    Confirm,
+  };
+  const [popupData, setPopupData] = useState(popups[popup.input].data);
 
-    const changePopupData = (inputName, value) => {
-        setPopupData((prevPopupData) => ({
-            ...prevPopupData,
-            [inputName]: value
-        }))
-    }
-
-    
+  const changePopupData = (inputName, value) => {
+    setPopupData((prevPopupData) => ({
+      ...prevPopupData,
+      [inputName]: value,
+    }));
+  };
 
   return (
     <div className={PopupCss.container}>
@@ -40,9 +46,25 @@ const Popup = ({ handleChangeData, data, handleChangePopup, popup, handleAppendT
           onClick={() => handleChangePopup(false)}
         />
         {popups[popup.input].inputs.map((item, index) => {
-            const Component = componentMap[item.inputKind]
+          const Component = componentMap[item.inputKind];
 
-            return <Component key={index} from='popup' {...item.props} data={data} type={popup.input} handlePopupData={(inputName, value) => changePopupData(inputName, value)} handleAppendToData={handleAppendToData} popupData={popupData} handleChangePopup={handleChangePopup}/>
+          return (
+            <Component
+              key={index}
+              from="popup"
+              {...item.props}
+              data={data}
+              type={popup.input}
+              handlePopupData={(inputName, value) =>
+                changePopupData(inputName, value)
+              }
+              handleAppendToData={handleAppendToData}
+              popupData={popupData}
+              handleChangePopup={handleChangePopup}
+              handleAppendMiniview={item.inputKind== "Confirm" ? handleAppendMiniview : undefined}
+              dropdowns={item.inputKind== "Confirm" ? dropdowns : undefined}
+            />
+          );
         })}
         {/* <FullInput
           text="Field"

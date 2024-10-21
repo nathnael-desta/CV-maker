@@ -9,9 +9,18 @@ import ListItem from "./ListItem";
 import Add from "./Add";
 import { arrangements } from "../Data";
 import Confirm from "./Confirm";
+import MiniView from "./MiniView";
 
-const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleChangeDescription, handleChangePopup, popup}) => {
-  const { name: icon, alt: iconAlt, title, droppedDown, type } = dropdown
+const Input = ({
+  dropdown,
+  handleToggleDropdown,
+  data,
+  handleChangeData,
+  handleChangeDescription,
+  handleChangePopup,
+  popup,
+}) => {
+  const { name: icon, alt: iconAlt, title, droppedDown, type } = dropdown;
 
   const componentMap = {
     FullInput,
@@ -20,8 +29,8 @@ const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleC
     SmallView,
     ListItem,
     Add,
-    Confirm
-  }
+    Confirm,
+  };
 
   return (
     <div className={InputCss.input}>
@@ -52,10 +61,24 @@ const Input = ({ dropdown, handleToggleDropdown, data, handleChangeData, handleC
           />
         </div>
       </div>
-      {droppedDown && arrangements[type].map((item, index) => {
-        const Component = componentMap[item.inputKind]
-        return <Component key={index} from='input' {...item.props} handleChangeData={handleChangeData} handleChangeDescription={handleChangeDescription} type={type} data={data} handleChangePopup={handleChangePopup} popup={popup}/>
-      })}
+      {droppedDown &&
+        arrangements[type].map((item, index) => {
+          const Component = componentMap[item.inputKind];
+          return (
+            <Component
+              key={index}
+              from="input"
+              {...item.props}
+              handleChangeData={handleChangeData}
+              handleChangeDescription={handleChangeDescription}
+              type={type}
+              data={data}
+              handleChangePopup={handleChangePopup}
+              popup={popup}
+            />
+          );
+        })}
+      <MiniView />
     </div>
   );
 };
