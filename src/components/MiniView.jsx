@@ -5,7 +5,8 @@ const MiniView = ({ title }) => {
     return (
         <div className={MiniViewCss.container}>
             <div className={MiniViewCss.left}>
-                {title}
+                <img className={MiniViewCss.drag} src="src/assets/images/drag.svg" alt="drag" />
+                <div className={MiniViewCss.text}>{title}</div>
             </div>
             <div className={MiniViewCss.right}>
                 <img src="src/assets/images/eye.svg" alt="unshow" />
