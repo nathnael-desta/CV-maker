@@ -58,7 +58,7 @@ const Popup = ({
 
           return (
             <Component
-              key={index.id}
+              key={item.id}
               index={popup.index}
               from="popup"
               {...item.props}
@@ -80,29 +80,6 @@ const Popup = ({
             />
           );
         })}
-        {/* <FullInput
-          text="Field"
-          inputName="firstName"
-          handleChangeData={handleChangeData}
-          type="general"
-          data={data}
-        />
-        <FullInput
-          text="Institution"
-          inputName="firstName"
-          handleChangeData={handleChangeData}
-          type="general"
-          data={data}
-        />
-        <HalfInput
-          firstText="Start"
-          secondText="End"
-          inputName1="afd"
-          inputName2="adfs"
-          data={data}
-          type="general"
-          handleChangeData={handleChangeData}
-        /> */}
       </div>
     </div>
   );

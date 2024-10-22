@@ -47,43 +47,50 @@ export const arrangements = {
     education: [
         {
             inputKind: 'Add',
-            props: {  }
+            props: {  },
+            id: uuidv4(),
         }
     ],
     work: [
         {
             inputKind: 'Add',
-            props: { }
+            props: { },
+            id: uuidv4(),
         }
     ],
     skill: [
         {
             inputKind: 'Add',
-            props: { }
+            props: { },
+            id: uuidv4(),
         }
     ],
     project: [
         {
             inputKind: 'Add',
-            props: { }
+            props: { },
+            id: uuidv4(),
         }
     ],
     course: [
         {
             inputKind: 'Add',
-            props: { }
+            props: { },
+            id: uuidv4(),
         }
     ],
     interest: [
         {
             inputKind: 'Add',
-            props: { }
+            props: { },
+            id: uuidv4(),
         }
     ],
     language: [
         {
             inputKind: 'Add',
-            props: { }
+            props: { },
+            id: uuidv4(),
         }
     ],
 }
