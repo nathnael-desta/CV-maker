@@ -157,9 +157,8 @@ const Container = () => {
   const [popup, setPopup] = useState({
     isShown: false,
     input: "",
-    index: 0
+    index: 0,
   });
-
 
   const toggleDroppedDown = (index) => {
     setDropdowns((prevState) =>
@@ -183,16 +182,12 @@ const Container = () => {
       ...prevData,
       [type]: prevData[type].map((item, i) => {
         if (i == index) {
-          return {...item, [inputName]: value}
+          return { ...item, [inputName]: value };
         }
-        return item
-      })
-    }))
-  }
-
-  // useEffect(() => {
-  //   console.log("this is the new data", data); // Log the updated data whenever it changes
-  // }, [data]); // Dependency array with data
+        return item;
+      }),
+    }));
+  };
 
   const changeDescription = (group, value) => {
     setData((prevData) => ({
@@ -206,19 +201,21 @@ const Container = () => {
       ...prevPopup,
       isShown: isShown,
       input: inputName,
-      index: index
+      index: index,
     }));
 
-
-    setData((prevData) => ({...prevData, [inputName]: [...prevData[inputName], popups[inputName].data]}))
+    setData((prevData) => ({
+      ...prevData,
+      [inputName]: [...prevData[inputName], popups[inputName].data],
+    }));
   };
 
   const togglePopup = () => {
     setPopup((prevPopup) => ({
       ...prevPopup,
-      isShown: !prevPopup.isShown
-    }))
-  }
+      isShown: !prevPopup.isShown,
+    }));
+  };
 
   const appendToData = (inputName, object) => {
     setData((prevData) => ({
@@ -228,10 +225,25 @@ const Container = () => {
   };
 
   const appendMiniView = (type, newMiniView) => {
-    setDropdowns((prevDropdowns) => prevDropdowns.map((dropdown, i) => 
-      dropdown.type === type ? {...dropdown, miniViews : [...dropdown.miniViews, newMiniView]} : dropdown
-    ))
+    setDropdowns((prevDropdowns) =>
+      prevDropdowns.map((dropdown, i) =>
+        dropdown.type === type
+          ? { ...dropdown, miniViews: [...dropdown.miniViews, newMiniView] }
+          : dropdown
+      )
+    );
   };
+
+  const deletePopup = (type, index) => {
+    setData((prevData) => ({
+      ...prevData,
+      [type]: prevData[type].splice(index, 1),
+    }));
+  };
+
+  useEffect(() => {
+    console.log("this is the new data", data); // Log the updated data whenever it changes
+  }, [data]); // Dependency array with data
 
   return (
     <div className={ContainerCss.container}>
@@ -268,10 +280,15 @@ const Container = () => {
           handleAppendToData={(inputName, object) =>
             appendToData(inputName, object)
           }
-          handleAppendMiniview={(index, miniView) => appendMiniView(index, miniView)}
+          handleAppendMiniview={(index, miniView) =>
+            appendMiniView(index, miniView)
+          }
           dropdowns={dropdowns}
-          handleChangeDataList={(type, index, inputName, value) => changeDataList(type, index, inputName, value)}
+          handleChangeDataList={(type, index, inputName, value) =>
+            changeDataList(type, index, inputName, value)
+          }
           handleTogglePopup={() => togglePopup()}
+          handleDeletePopup={(type, index) => deletePopup(type, index)}
         />
       )}
     </div>

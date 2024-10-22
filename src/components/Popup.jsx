@@ -18,7 +18,8 @@ const Popup = ({
   handleAppendMiniview,
   dropdowns,
   handleChangeDataList,
-  handleTogglePopup
+  handleTogglePopup,
+  handleDeletePopup
 }) => {
   const componentMap = {
     FullInput,
@@ -45,7 +46,9 @@ const Popup = ({
           className={PopupCss.close}
           src="src/assets/images/Close.svg"
           alt="close"
-          onClick={() => handleChangePopup(false)}
+          onClick={() => {
+            handleTogglePopup()
+            handleDeletePopup(popup.input, popup.index)}}
         />
         {popups[popup.input].inputs.map((item, index) => {
           const Component = componentMap[item.inputKind];
