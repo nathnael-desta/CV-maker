@@ -1,10 +1,11 @@
+import { v4 as uuidv4 } from 'uuid';
 import Editor from "./Editor";
 import ContainerCss from "../styles/Container.module.css";
 import PDFFile from "./PDFFile";
 import Nav from "./Nav";
 import { useState, useEffect } from "react";
 import Popup from "./Popup";
-import { popups } from "../Data";
+import { popupFormats } from "../Data";
 
 const Container = () => {
   const [data, setData] = useState({
@@ -12,12 +13,17 @@ const Container = () => {
       firstName: "",
       lastName: "",
       title: "",
+      id: uuidv4(),
     },
-    profile: "",
+    profile: {
+      text: '',
+      id: uuidv4(),
+    },
     contact: {
       adress: "",
       email: "",
       phoneNo: "",
+      id: uuidv4(),
     },
     education: [
       // {
@@ -79,6 +85,7 @@ const Container = () => {
       droppedDown: false,
       type: "general",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Profile",
@@ -87,6 +94,7 @@ const Container = () => {
       droppedDown: false,
       type: "profile",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Education",
@@ -95,6 +103,7 @@ const Container = () => {
       droppedDown: false,
       type: "education",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Contact",
@@ -103,6 +112,7 @@ const Container = () => {
       droppedDown: false,
       type: "contact",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Work History",
@@ -111,6 +121,7 @@ const Container = () => {
       droppedDown: false,
       type: "work",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Skills",
@@ -119,6 +130,7 @@ const Container = () => {
       droppedDown: false,
       type: "skill",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Projects",
@@ -127,6 +139,7 @@ const Container = () => {
       droppedDown: false,
       type: "project",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Courses",
@@ -135,6 +148,7 @@ const Container = () => {
       droppedDown: false,
       type: "course",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Interests",
@@ -143,6 +157,7 @@ const Container = () => {
       droppedDown: false,
       type: "interest",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Languages",
@@ -151,6 +166,7 @@ const Container = () => {
       droppedDown: false,
       type: "language",
       miniViews: [],
+      id: uuidv4(),
     },
   ]);
 
@@ -160,10 +176,10 @@ const Container = () => {
     index: 0,
   });
 
-  const toggleDroppedDown = (index) => {
+  const toggleDroppedDown = (id) => {
     setDropdowns((prevState) =>
-      prevState.map((dropdown, i) =>
-        i === index
+      prevState.map((dropdown) =>
+        dropdown.id === id
           ? { ...dropdown, droppedDown: !dropdown.droppedDown }
           : { ...dropdown, droppedDown: false }
       )
@@ -192,21 +208,21 @@ const Container = () => {
   const changeDescription = (group, value) => {
     setData((prevData) => ({
       ...prevData,
-      [group]: value,
+      [group]: { text: value }
     }));
   };
 
-  const changePopup = (isShown, inputName, index) => {
+  const changePopup = (isShown, type, index) => {
     setPopup((prevPopup) => ({
       ...prevPopup,
       isShown: isShown,
-      input: inputName,
+      input: type,
       index: index,
     }));
 
     setData((prevData) => ({
       ...prevData,
-      [inputName]: [...prevData[inputName], popups[inputName].data],
+      [type]: [...prevData[type], {...popupFormats[type].data, id: uuidv4()}],
     }));
   };
 

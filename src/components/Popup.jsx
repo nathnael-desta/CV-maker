@@ -1,4 +1,4 @@
-import { popups } from "../Data";
+import { popupFormats } from "../Data";
 import PopupCss from "../styles/Popup.module.css";
 import FullInput from "./FullInput";
 import HalfInput from "./HalfInput";
@@ -30,7 +30,7 @@ const Popup = ({
     Add,
     Confirm,
   };
-  const [popupData, setPopupData] = useState(popups[popup.input].data);
+  const [popupData, setPopupData] = useState(popupFormats[popup.input].data);
 
   const changePopupData = (inputName, value) => {
     setPopupData((prevPopupData) => ({
@@ -50,12 +50,12 @@ const Popup = ({
             handleTogglePopup()
             handleDeletePopup(popup.input, popup.index)}}
         />
-        {popups[popup.input].inputs.map((item, index) => {
+        {popupFormats[popup.input].inputs.map((item, index) => {
           const Component = componentMap[item.inputKind];
 
           return (
             <Component
-              key={index}
+              key={index.id}
               index={popup.index}
               from="popup"
               {...item.props}

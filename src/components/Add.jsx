@@ -1,10 +1,10 @@
 import AddCss from "../styles/Add.module.css";
 
-const Add = ({ handleChangePopup, inputName, data, type }) => {
+const Add = ({ handleChangePopup,  data, type }) => {
   return (
     <div
       className={AddCss.container}
-      onClick={() => handleChangePopup(true, inputName, data[type].length)}
+      onClick={() => handleChangePopup(true, type, data[type].length)}
     >
       <img src="src/assets/images/add.svg" alt="add" />
       <div className="text">Add</div>

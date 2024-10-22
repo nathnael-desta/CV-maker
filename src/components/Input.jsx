@@ -69,54 +69,32 @@ const Input = ({
         </div>
       </div>
       {Array.isArray(data[type]) &&
-        data[type].map((item, i) => <MiniView key={i} title={data[type][i].name
-          ? data[type][i].name
-          : data[type][i].company
-          ? data[type][i].company
-          : data[type][i].skillName
-          ? data[type][i].skillName
-          : data[type][i].title
-          ? data[type][i].title
-          : data[type][i].interestName
-          ? data[type][i].interestName
-          : data[type][i].languageName
-          ? data[type][i].languageName
-          : ""}
-          
-          />)}
-      {/* {droppedDown &&
-        miniViews.map((miniView, index) => (
+        data[type].map((item, i) => (
           <MiniView
-            key={index}
+            key={item.id}
             title={
-              miniView.name
-                ? miniView.name
-                : miniView.company
-                ? miniView.company
-                : miniView.skillName
-                ? miniView.skillName
-                : miniView.title
-                ? miniView.title
-                : miniView.interestName
-                ? miniView.interestName
-                : miniView.languageName
-                ? miniView.languageName
-                : ";)"
+              data[type][i].name
+                ? data[type][i].name
+                : data[type][i].company
+                ? data[type][i].company
+                : data[type][i].skillName
+                ? data[type][i].skillName
+                : data[type][i].title
+                ? data[type][i].title
+                : data[type][i].interestName
+                ? data[type][i].interestName
+                : data[type][i].languageName
+                ? data[type][i].languageName
+                : ""
             }
-
-            data={ data }
-            type={type}
-            miniViews={miniViews}
-
-
           />
-        ))} */}
+        ))}
       {droppedDown &&
         arrangements[type].map((item, index) => {
           const Component = componentMap[item.inputKind];
           return (
             <Component
-              key={index}
+              key={item.id}
               from="input"
               {...item.props}
               handleChangeData={handleChangeData}
