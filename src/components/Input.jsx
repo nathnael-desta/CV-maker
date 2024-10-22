@@ -69,18 +69,18 @@ const Input = ({
         </div>
       </div>
       {Array.isArray(data[type]) &&
-        data[type].map((item, i) => <MiniView key={i} title={data[type][popup.index].name
-          ? data[type][popup.index].name
-          : data[type][popup.index].company
-          ? data[type][popup.index].company
-          : data[type][popup.index].skillName
-          ? data[type][popup.index].skillName
-          : data[type][popup.index].title
-          ? data[type][popup.index].title
-          : data[type][popup.index].interestName
-          ? data[type][popup.index].interestName
-          : data[type][popup.index].languageName
-          ? data[type][popup.index].languageName
+        data[type].map((item, i) => <MiniView key={i} title={data[type][i].name
+          ? data[type][i].name
+          : data[type][i].company
+          ? data[type][i].company
+          : data[type][i].skillName
+          ? data[type][i].skillName
+          : data[type][i].title
+          ? data[type][i].title
+          : data[type][i].interestName
+          ? data[type][i].interestName
+          : data[type][i].languageName
+          ? data[type][i].languageName
           : ""}
           
           />)}

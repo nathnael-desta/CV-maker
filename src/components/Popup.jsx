@@ -71,7 +71,7 @@ const Popup = ({
               dropdowns={item.inputKind== "Confirm" ? dropdowns : undefined}
               handleChangeDataList={handleChangeDataList}
               handleTogglePopup={handleTogglePopup}
-
+              popup={popup}
             />
           );
         })}

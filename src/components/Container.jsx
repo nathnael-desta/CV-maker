@@ -237,13 +237,17 @@ const Container = () => {
   const deletePopup = (type, index) => {
     setData((prevData) => ({
       ...prevData,
-      [type]: prevData[type].splice(index, 1),
+      [type]: prevData[type].filter((item, i) => i !== index),
     }));
   };
 
   useEffect(() => {
     console.log("this is the new data", data); // Log the updated data whenever it changes
   }, [data]); // Dependency array with data
+
+  // useEffect(() => {
+  //   console.log("this is the index", popup.index); // Log the updated data whenever it changes
+  // }, [popup]); // Dependency array with data
 
   return (
     <div className={ContainerCss.container}>

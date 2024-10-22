@@ -8,7 +8,7 @@ const FullInput = ({
   data,
   from,
   handlePopupData,
-  index,
+  popup,
   handleChangeDataList
 }) => {
   const handleInputChange = (event) => {
@@ -16,7 +16,7 @@ const FullInput = ({
 
     if (from == "popup") {
       // handlePopupData(inputName, inputValue);
-      handleChangeDataList(type, index, inputName, inputValue)
+      handleChangeDataList(type, popup.index, inputName, inputValue)
     } else {
       handleChangeData(type, inputName, inputValue);
     }
@@ -31,7 +31,7 @@ const FullInput = ({
         id=""
         onChange={handleInputChange}
 
-        value={from == "popup" ? data[type][index][inputName] : data[type][inputName]}
+        value={from == "popup" ? data[type][popup.index][inputName] : data[type][inputName]}
       />
     </div>
   );

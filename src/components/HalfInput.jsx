@@ -10,14 +10,14 @@ const HalfInput = ({
   handleChangeData,
   from,
   handlePopupData,
-  index,
+  popup,
   handleChangeDataList
 }) => {
   const handleInputChange1 = (event) => {
     const inputValue = event.target.value;
 
     if (from == "popup") {
-    handleChangeDataList(type, index, inputName1, inputValue)
+    handleChangeDataList(type, popup.index, inputName1, inputValue)
     } else {
       handleChangeData(type, inputName1, inputValue);
     }
@@ -27,7 +27,7 @@ const HalfInput = ({
     const inputValue = event.target.value;
 
     if (from == "popup") {
-        handleChangeDataList(type, index, inputName2, inputValue)
+        handleChangeDataList(type, popup.index, inputName2, inputValue)
     } else {
       handleChangeData(type, inputName2, inputValue);
     }
