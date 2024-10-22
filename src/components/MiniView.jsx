@@ -1,9 +1,9 @@
 import MiniViewCss from '../styles/MiniView.module.css'
 
 
-const MiniView = ({ title, data, type, miniViews }) => {
+const MiniView = ({ title}) => {
     return (
-        <div className={MiniViewCss.container} onClick={() => console.log(miniViews)}>
+        <div className={MiniViewCss.container}>
             <div className={MiniViewCss.left}>
                 <img className={MiniViewCss.drag} src="src/assets/images/drag.svg" alt="drag" />
                 <div className={MiniViewCss.text}>{title}</div>

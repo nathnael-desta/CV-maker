@@ -68,7 +68,23 @@ const Input = ({
           />
         </div>
       </div>
-      {droppedDown &&
+      {Array.isArray(data[type]) &&
+        data[type].map((item, i) => <MiniView key={i} title={data[type][popup.index].name
+          ? data[type][popup.index].name
+          : data[type][popup.index].company
+          ? data[type][popup.index].company
+          : data[type][popup.index].skillName
+          ? data[type][popup.index].skillName
+          : data[type][popup.index].title
+          ? data[type][popup.index].title
+          : data[type][popup.index].interestName
+          ? data[type][popup.index].interestName
+          : data[type][popup.index].languageName
+          ? data[type][popup.index].languageName
+          : ""}
+          
+          />)}
+      {/* {droppedDown &&
         miniViews.map((miniView, index) => (
           <MiniView
             key={index}
@@ -94,7 +110,7 @@ const Input = ({
 
 
           />
-        ))}
+        ))} */}
       {droppedDown &&
         arrangements[type].map((item, index) => {
           const Component = componentMap[item.inputKind];
@@ -109,7 +125,6 @@ const Input = ({
               data={data}
               handleChangePopup={handleChangePopup}
               popup={popup}
-              
             />
           );
         })}

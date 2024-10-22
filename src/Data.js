@@ -104,11 +104,11 @@ export const popups = {
             }
         ],
         data: {   
-            name: 'nate',
-            offeredBy: 'asfd',
-            details: 'asdf',
-            start: 'asd',
-            end: 'asdf'
+            name: '',
+            offeredBy: '',
+            details: '',
+            start: '',
+            end: ''
         }
     },
     work: {

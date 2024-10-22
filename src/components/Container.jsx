@@ -190,9 +190,9 @@ const Container = () => {
     }))
   }
 
-  useEffect(() => {
-    console.log("this is the new data", data); // Log the updated data whenever it changes
-  }, [data]); // Dependency array with data
+  // useEffect(() => {
+  //   console.log("this is the new data", data); // Log the updated data whenever it changes
+  // }, [data]); // Dependency array with data
 
   const changeDescription = (group, value) => {
     setData((prevData) => ({
@@ -213,6 +213,13 @@ const Container = () => {
     setData((prevData) => ({...prevData, [inputName]: [...prevData[inputName], popups[inputName].data]}))
   };
 
+  const togglePopup = () => {
+    setPopup((prevPopup) => ({
+      ...prevPopup,
+      isShown: !prevPopup.isShown
+    }))
+  }
+
   const appendToData = (inputName, object) => {
     setData((prevData) => ({
       ...prevData,
@@ -221,7 +228,6 @@ const Container = () => {
   };
 
   const appendMiniView = (type, newMiniView) => {
-    console.log(dropdowns, "...............");
     setDropdowns((prevDropdowns) => prevDropdowns.map((dropdown, i) => 
       dropdown.type === type ? {...dropdown, miniViews : [...dropdown.miniViews, newMiniView]} : dropdown
     ))
@@ -265,6 +271,7 @@ const Container = () => {
           handleAppendMiniview={(index, miniView) => appendMiniView(index, miniView)}
           dropdowns={dropdowns}
           handleChangeDataList={(type, index, inputName, value) => changeDataList(type, index, inputName, value)}
+          handleTogglePopup={() => togglePopup()}
         />
       )}
     </div>
