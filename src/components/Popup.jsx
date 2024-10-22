@@ -16,7 +16,8 @@ const Popup = ({
   popup,
   handleAppendToData,
   handleAppendMiniview,
-  dropdowns
+  dropdowns,
+  handleChangeDataList
 }) => {
   const componentMap = {
     FullInput,
@@ -29,14 +30,14 @@ const Popup = ({
   };
   const [popupData, setPopupData] = useState(popups[popup.input].data);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      console.log(data);
-    }, 2000);
+//   useEffect(() => {
+//     const intervalId = setInterval(() => {
+//       console.log(data);
+//     }, 1000);
 
-    // Cleanup function to clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
+//     // Cleanup function to clear the interval when the component unmounts
+//     return () => clearInterval(intervalId);
+//   }, []);
 
   const changePopupData = (inputName, value) => {
     setPopupData((prevPopupData) => ({
@@ -60,7 +61,7 @@ const Popup = ({
           return (
             <Component
               key={index}
-              index={index}
+              index={popup.index}
               from="popup"
               {...item.props}
               data={data}
@@ -73,6 +74,7 @@ const Popup = ({
               handleChangePopup={handleChangePopup}
               handleAppendMiniview={item.inputKind== "Confirm" ? handleAppendMiniview : undefined}
               dropdowns={item.inputKind== "Confirm" ? dropdowns : undefined}
+              handleChangeDataList={handleChangeDataList}
             />
           );
         })}

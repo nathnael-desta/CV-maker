@@ -2,7 +2,7 @@ import Editor from "./Editor";
 import ContainerCss from "../styles/Container.module.css";
 import PDFFile from "./PDFFile";
 import Nav from "./Nav";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "./Popup";
 import { popups } from "../Data";
 
@@ -157,6 +157,7 @@ const Container = () => {
   const [popup, setPopup] = useState({
     isShown: false,
     input: "",
+    index: 0
   });
 
 
@@ -177,6 +178,22 @@ const Container = () => {
     }));
   };
 
+  const changeDataList = (type, index, inputName, value) => {
+    setData((prevData) => ({
+      ...prevData,
+      [type]: prevData[type].map((item, i) => {
+        if (i == index) {
+          return {...item, [inputName]: value}
+        }
+        return item
+      })
+    }))
+  }
+
+  useEffect(() => {
+    console.log("this is the new data", data); // Log the updated data whenever it changes
+  }, [data]); // Dependency array with data
+
   const changeDescription = (group, value) => {
     setData((prevData) => ({
       ...prevData,
@@ -184,11 +201,12 @@ const Container = () => {
     }));
   };
 
-  const changePopup = (isShown, inputName) => {
+  const changePopup = (isShown, inputName, index) => {
     setPopup((prevPopup) => ({
       ...prevPopup,
       isShown: isShown,
       input: inputName,
+      index: index
     }));
 
 
@@ -223,8 +241,8 @@ const Container = () => {
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
-        handleChangePopup={(isShown, inputName) =>
-          changePopup(isShown, inputName)
+        handleChangePopup={(isShown, inputName, index) =>
+          changePopup(isShown, inputName, index)
         }
         handleAppendToData={(inputName, object) =>
           appendToData(inputName, object)
@@ -237,8 +255,8 @@ const Container = () => {
             changeData(type, input, value)
           }
           data={data}
-          handleChangePopup={(isShown, inputName) =>
-            changePopup(isShown, inputName)
+          handleChangePopup={(isShown, inputName, index) =>
+            changePopup(isShown, inputName, index)
           }
           popup={popup}
           handleAppendToData={(inputName, object) =>
@@ -246,6 +264,7 @@ const Container = () => {
           }
           handleAppendMiniview={(index, miniView) => appendMiniView(index, miniView)}
           dropdowns={dropdowns}
+          handleChangeDataList={(type, index, inputName, value) => changeDataList(type, index, inputName, value)}
         />
       )}
     </div>
