@@ -212,7 +212,7 @@ const Container = () => {
     }));
   };
 
-  const changePopup = (isShown, type, index) => {
+  const changePopup = (isShown, type, index, addData=true) => {
     setPopup((prevPopup) => ({
       ...prevPopup,
       isShown: isShown,
@@ -220,10 +220,12 @@ const Container = () => {
       index: index,
     }));
 
-    setData((prevData) => ({
-      ...prevData,
-      [type]: [...prevData[type], {...popupFormats[type].data, id: uuidv4()}],
-    }));
+    if (addData) {
+      setData((prevData) => ({
+        ...prevData,
+        [type]: [...prevData[type], {...popupFormats[type].data, id: uuidv4()}],
+      }));
+    }
   };
 
   const togglePopup = () => {
@@ -257,13 +259,13 @@ const Container = () => {
     }));
   };
 
-  useEffect(() => {
-    console.log("this is the new data", data); // Log the updated data whenever it changes
-  }, [data]); // Dependency array with data
-
   // useEffect(() => {
-  //   console.log("this is the index", popup.index); // Log the updated data whenever it changes
-  // }, [popup]); // Dependency array with data
+  //   console.log("this is the new data", data); // Log the updated data whenever it changes
+  // }, [data]); // Dependency array with data
+
+  useEffect(() => {
+    console.log("this is the index", popup.index); // Log the updated data whenever it changes
+  }, [popup]); // Dependency array with data
 
   return (
     <div className={ContainerCss.container}>
@@ -279,8 +281,8 @@ const Container = () => {
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
-        handleChangePopup={(isShown, inputName, index) =>
-          changePopup(isShown, inputName, index)
+        handleChangePopup={(isShown, inputName, index, addData) =>
+          changePopup(isShown, inputName, index, addData)
         }
         handleAppendToData={(inputName, object) =>
           appendToData(inputName, object)
@@ -294,8 +296,8 @@ const Container = () => {
             changeData(type, input, value)
           }
           data={data}
-          handleChangePopup={(isShown, inputName, index) =>
-            changePopup(isShown, inputName, index)
+          handleChangePopup={(isShown, inputName, index, addData) =>
+            changePopup(isShown, inputName, index, addData)
           }
           popup={popup}
           handleAppendToData={(inputName, object) =>

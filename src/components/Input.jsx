@@ -69,7 +69,7 @@ const Input = ({
           />
         </div>
       </div>
-      {Array.isArray(data[type]) &&
+      {Array.isArray(data[type]) && droppedDown &&
         data[type].map((item, i) => (
           <MiniView
             key={item.id}
@@ -89,6 +89,10 @@ const Input = ({
                 ? data[type][i].languageName
                 : ""
             }
+            popup={popup}
+            handleChangePopup={handleChangePopup}
+            type={type}
+            index={i}
           />
         ))}
       {droppedDown &&

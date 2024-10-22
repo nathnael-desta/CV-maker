@@ -27,7 +27,7 @@ const HalfInput = ({
     const inputValue = event.target.value;
 
     if (from == "popup") {
-        handleChangeDataList(type, popup.index, inputName2, inputValue)
+        handleChangeDataList(popup.input, popup.index, inputName2, inputValue)
     } else {
       handleChangeData(type, inputName2, inputValue);
     }
@@ -43,7 +43,7 @@ const HalfInput = ({
           name=""
           id=""
           onChange={handleInputChange1}
-          value={from == "popup" ? data[type][popup.index][inputName1] : data[type][inputName1]}
+          value={from == "popup" ? data[popup.input][popup.index][inputName1] : data[type][inputName1]}
         />
       </div>
       <div className={HalfInputCss.subContainer}>
@@ -54,7 +54,7 @@ const HalfInput = ({
           name=""
           id=""
           onChange={handleInputChange2}
-          value={from == "popup" ? data[type][popup.index][inputName2] : data[type][inputName2]}
+          value={from == "popup" ? data[popup.input][popup.index][inputName2] : data[type][inputName2]}
         />
       </div>
     </div>
