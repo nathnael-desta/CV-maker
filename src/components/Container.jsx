@@ -285,6 +285,7 @@ const Container = () => {
         handleAppendToData={(inputName, object) =>
           appendToData(inputName, object)
         }
+        handleTogglePopup={() => togglePopup()}
       />
       <PDFFile />
       {popup.isShown && (

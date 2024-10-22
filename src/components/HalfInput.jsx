@@ -43,7 +43,7 @@ const HalfInput = ({
           name=""
           id=""
           onChange={handleInputChange1}
-          value={data[type][inputName1]}
+          value={from == "popup" ? data[type][popup.index][inputName1] : data[type][inputName1]}
         />
       </div>
       <div className={HalfInputCss.subContainer}>
@@ -54,7 +54,7 @@ const HalfInput = ({
           name=""
           id=""
           onChange={handleInputChange2}
-          value={data[type][inputName2]}
+          value={from == "popup" ? data[type][popup.index][inputName2] : data[type][inputName2]}
         />
       </div>
     </div>

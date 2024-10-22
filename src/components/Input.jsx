@@ -19,6 +19,7 @@ const Input = ({
   handleChangeDescription,
   handleChangePopup,
   popup,
+  handleTogglePopup
 }) => {
   const {
     name: icon,
@@ -72,6 +73,7 @@ const Input = ({
         data[type].map((item, i) => (
           <MiniView
             key={item.id}
+            handleTogglePopup={handleTogglePopup}
             title={
               data[type][i].name
                 ? data[type][i].name
