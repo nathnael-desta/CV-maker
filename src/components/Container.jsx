@@ -174,6 +174,7 @@ const Container = () => {
     isShown: false,
     input: "",
     index: 0,
+    newPopup: true
   });
 
   const toggleDroppedDown = (id) => {
@@ -212,12 +213,13 @@ const Container = () => {
     }));
   };
 
-  const changePopup = (isShown, type, index, addData=true) => {
+  const changePopup = (isShown, type, index, addData=true, newPopup=true) => {
     setPopup((prevPopup) => ({
       ...prevPopup,
       isShown: isShown,
       input: type,
       index: index,
+      newPopup: newPopup
     }));
 
     if (addData) {
@@ -264,7 +266,7 @@ const Container = () => {
   // }, [data]); // Dependency array with data
 
   useEffect(() => {
-    console.log("this is the index", popup.index); // Log the updated data whenever it changes
+    console.log("this is the index", popup); // Log the updated data whenever it changes
   }, [popup]); // Dependency array with data
 
   return (
@@ -281,8 +283,8 @@ const Container = () => {
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
-        handleChangePopup={(isShown, inputName, index, addData) =>
-          changePopup(isShown, inputName, index, addData)
+        handleChangePopup={(isShown, inputName, index, addData, newPopup) =>
+          changePopup(isShown, inputName, index, addData, newPopup)
         }
         handleAppendToData={(inputName, object) =>
           appendToData(inputName, object)
@@ -296,8 +298,8 @@ const Container = () => {
             changeData(type, input, value)
           }
           data={data}
-          handleChangePopup={(isShown, inputName, index, addData) =>
-            changePopup(isShown, inputName, index, addData)
+          handleChangePopup={(isShown, inputName, index, addData, newPopup) =>
+            changePopup(isShown, inputName, index, addData, newPopup)
           }
           popup={popup}
           handleAppendToData={(inputName, object) =>

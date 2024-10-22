@@ -4,7 +4,7 @@ import MiniViewCss from '../styles/MiniView.module.css'
 const MiniView = ({ title, handleTogglePopup, popup, handleChangePopup, type, index }) => {
     return (
         <div className={MiniViewCss.container} onClick={() => {
-            handleChangePopup(popup.isShown, type, index, false)
+            handleChangePopup(popup.isShown, type, index, false, false)
             handleTogglePopup()}}>
             <div className={MiniViewCss.left}>
                 <img className={MiniViewCss.drag} src="src/assets/images/drag.svg" alt="drag" />

@@ -19,7 +19,7 @@ const Popup = ({
   dropdowns,
   handleChangeDataList,
   handleTogglePopup,
-  handleDeletePopup
+  handleDeletePopup,
 }) => {
   const componentMap = {
     FullInput,
@@ -47,8 +47,11 @@ const Popup = ({
           src="src/assets/images/Close.svg"
           alt="close"
           onClick={() => {
-            handleTogglePopup()
-            handleDeletePopup(popup.input, popup.index)}}
+            handleTogglePopup();
+            if (popup.newPopup) {
+              handleDeletePopup(popup.input, popup.index);
+            }
+          }}
         />
         {popupFormats[popup.input].inputs.map((item, index) => {
           const Component = componentMap[item.inputKind];
@@ -67,8 +70,10 @@ const Popup = ({
               handleAppendToData={handleAppendToData}
               popupData={popupData}
               handleChangePopup={handleChangePopup}
-              handleAppendMiniview={item.inputKind== "Confirm" ? handleAppendMiniview : undefined}
-              dropdowns={item.inputKind== "Confirm" ? dropdowns : undefined}
+              handleAppendMiniview={
+                item.inputKind == "Confirm" ? handleAppendMiniview : undefined
+              }
+              dropdowns={item.inputKind == "Confirm" ? dropdowns : undefined}
               handleChangeDataList={handleChangeDataList}
               handleTogglePopup={handleTogglePopup}
               popup={popup}
