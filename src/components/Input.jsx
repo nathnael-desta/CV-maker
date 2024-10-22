@@ -20,7 +20,14 @@ const Input = ({
   handleChangePopup,
   popup,
 }) => {
-  const { name: icon, alt: iconAlt, title, droppedDown, type, miniViews } = dropdown;
+  const {
+    name: icon,
+    alt: iconAlt,
+    title,
+    droppedDown,
+    type,
+    miniViews,
+  } = dropdown;
 
   const componentMap = {
     FullInput,
@@ -61,7 +68,33 @@ const Input = ({
           />
         </div>
       </div>
-      {droppedDown && miniViews.map((miniView) => <MiniView title={miniView.name ? miniView.name : miniView.company ? miniView.company : miniView.skillName ? miniView.skillName : miniView.title ? miniView.title : miniView.interestName ? miniView.interestName : miniView.languageName ? miniView.languageName : ';)'}/>)}
+      {droppedDown &&
+        miniViews.map((miniView, index) => (
+          <MiniView
+            key={index}
+            title={
+              miniView.name
+                ? miniView.name
+                : miniView.company
+                ? miniView.company
+                : miniView.skillName
+                ? miniView.skillName
+                : miniView.title
+                ? miniView.title
+                : miniView.interestName
+                ? miniView.interestName
+                : miniView.languageName
+                ? miniView.languageName
+                : ";)"
+            }
+
+            data={ data }
+            type={type}
+            miniViews={miniViews}
+
+
+          />
+        ))}
       {droppedDown &&
         arrangements[type].map((item, index) => {
           const Component = componentMap[item.inputKind];

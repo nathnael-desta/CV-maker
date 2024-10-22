@@ -7,7 +7,7 @@ import SmallView from "./SmallView";
 import ListItem from "./ListItem";
 import Add from "./Add";
 import Confirm from "./Confirm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Popup = ({
   handleChangeData,
@@ -28,6 +28,15 @@ const Popup = ({
     Confirm,
   };
   const [popupData, setPopupData] = useState(popups[popup.input].data);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      console.log(data);
+    }, 2000);
+
+    // Cleanup function to clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
 
   const changePopupData = (inputName, value) => {
     setPopupData((prevPopupData) => ({
@@ -51,6 +60,7 @@ const Popup = ({
           return (
             <Component
               key={index}
+              index={index}
               from="popup"
               {...item.props}
               data={data}

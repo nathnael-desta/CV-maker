@@ -4,6 +4,7 @@ import PDFFile from "./PDFFile";
 import Nav from "./Nav";
 import { useState } from "react";
 import Popup from "./Popup";
+import { popups } from "../Data";
 
 const Container = () => {
   const [data, setData] = useState({
@@ -189,6 +190,9 @@ const Container = () => {
       isShown: isShown,
       input: inputName,
     }));
+
+
+    setData((prevData) => ({...prevData, [inputName]: [...prevData[inputName], popups[inputName].data]}))
   };
 
   const appendToData = (inputName, object) => {
