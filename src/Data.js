@@ -292,5 +292,19 @@ export const popupFormats = {
             languageName: '',
             id: ''
         }
+    },
+    delete: {
+        inputs: [
+            {
+                inputKind: 'TextView',
+                props: { text: 'Are you sure you want to delete this item?'},
+                id: uuidv4(),
+            },
+            {
+                inputKind: 'Confirm',
+                props: {},
+                id: uuidv4(),
+            }
+        ]
     }
 }

@@ -8,6 +8,7 @@ import ListItem from "./ListItem";
 import Add from "./Add";
 import Confirm from "./Confirm";
 import { useState, useEffect } from "react";
+import TextView from "./TextView";
 
 const Popup = ({
   handleChangeData,
@@ -29,6 +30,7 @@ const Popup = ({
     ListItem,
     Add,
     Confirm,
+    TextView
   };
   const [popupData, setPopupData] = useState(popupFormats[popup.input].data);
 
