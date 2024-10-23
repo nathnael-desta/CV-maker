@@ -1,9 +1,11 @@
+import { v4 as uuidv4 } from 'uuid';
 import Editor from "./Editor";
 import ContainerCss from "../styles/Container.module.css";
 import PDFFile from "./PDFFile";
 import Nav from "./Nav";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "./Popup";
+import { popupFormats } from "../Data";
 
 const Container = () => {
   const [data, setData] = useState({
@@ -11,12 +13,17 @@ const Container = () => {
       firstName: "",
       lastName: "",
       title: "",
+      id: uuidv4(),
     },
-    profile: "",
+    profile: {
+      text: '',
+      id: uuidv4(),
+    },
     contact: {
       adress: "",
       email: "",
       phoneNo: "",
+      id: uuidv4(),
     },
     education: [
       // {
@@ -78,6 +85,7 @@ const Container = () => {
       droppedDown: false,
       type: "general",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Profile",
@@ -86,6 +94,7 @@ const Container = () => {
       droppedDown: false,
       type: "profile",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Education",
@@ -94,6 +103,7 @@ const Container = () => {
       droppedDown: false,
       type: "education",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Contact",
@@ -102,6 +112,7 @@ const Container = () => {
       droppedDown: false,
       type: "contact",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Work History",
@@ -110,6 +121,7 @@ const Container = () => {
       droppedDown: false,
       type: "work",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Skills",
@@ -118,6 +130,7 @@ const Container = () => {
       droppedDown: false,
       type: "skill",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Projects",
@@ -126,6 +139,7 @@ const Container = () => {
       droppedDown: false,
       type: "project",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Courses",
@@ -134,6 +148,7 @@ const Container = () => {
       droppedDown: false,
       type: "course",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Interests",
@@ -142,6 +157,7 @@ const Container = () => {
       droppedDown: false,
       type: "interest",
       miniViews: [],
+      id: uuidv4(),
     },
     {
       title: "Languages",
@@ -150,19 +166,21 @@ const Container = () => {
       droppedDown: false,
       type: "language",
       miniViews: [],
+      id: uuidv4(),
     },
   ]);
 
   const [popup, setPopup] = useState({
     isShown: false,
     input: "",
+    index: 0,
+    newPopup: true
   });
 
-
-  const toggleDroppedDown = (index) => {
+  const toggleDroppedDown = (id) => {
     setDropdowns((prevState) =>
-      prevState.map((dropdown, i) =>
-        i === index
+      prevState.map((dropdown) =>
+        dropdown.id === id
           ? { ...dropdown, droppedDown: !dropdown.droppedDown }
           : { ...dropdown, droppedDown: false }
       )
@@ -176,18 +194,46 @@ const Container = () => {
     }));
   };
 
-  const changeDescription = (group, value) => {
+  const changeDataList = (type, index, inputName, value) => {
     setData((prevData) => ({
       ...prevData,
-      [group]: value,
+      [type]: prevData[type].map((item, i) => {
+        if (i == index) {
+          return { ...item, [inputName]: value };
+        }
+        return item;
+      }),
     }));
   };
 
-  const changePopup = (isShown, inputName) => {
+  const changeDescription = (group, value) => {
+    setData((prevData) => ({
+      ...prevData,
+      [group]: { text: value }
+    }));
+  };
+
+  const changePopup = (isShown, type, index, addData=true, newPopup=true) => {
     setPopup((prevPopup) => ({
       ...prevPopup,
       isShown: isShown,
-      input: inputName,
+      input: type,
+      index: index,
+      newPopup: newPopup
+    }));
+
+    if (addData) {
+      setData((prevData) => ({
+        ...prevData,
+        [type]: [...prevData[type], {...popupFormats[type].data, id: uuidv4()}],
+      }));
+    }
+  };
+
+  const togglePopup = () => {
+    setPopup((prevPopup) => ({
+      ...prevPopup,
+      isShown: !prevPopup.isShown,
     }));
   };
 
@@ -199,11 +245,29 @@ const Container = () => {
   };
 
   const appendMiniView = (type, newMiniView) => {
-    console.log(dropdowns, "...............");
-    setDropdowns((prevDropdowns) => prevDropdowns.map((dropdown, i) => 
-      dropdown.type === type ? {...dropdown, miniViews : [...dropdown.miniViews, newMiniView]} : dropdown
-    ))
+    setDropdowns((prevDropdowns) =>
+      prevDropdowns.map((dropdown, i) =>
+        dropdown.type === type
+          ? { ...dropdown, miniViews: [...dropdown.miniViews, newMiniView] }
+          : dropdown
+      )
+    );
   };
+
+  const deletePopup = (type, index) => {
+    setData((prevData) => ({
+      ...prevData,
+      [type]: prevData[type].filter((item, i) => i !== index),
+    }));
+  };
+
+  // useEffect(() => {
+  //   console.log("this is the new data", data); // Log the updated data whenever it changes
+  // }, [data]); // Dependency array with data
+
+  useEffect(() => {
+    console.log("this is the index", popup); // Log the updated data whenever it changes
+  }, [popup]); // Dependency array with data
 
   return (
     <div className={ContainerCss.container}>
@@ -219,12 +283,13 @@ const Container = () => {
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
-        handleChangePopup={(isShown, inputName) =>
-          changePopup(isShown, inputName)
+        handleChangePopup={(isShown, inputName, index, addData, newPopup) =>
+          changePopup(isShown, inputName, index, addData, newPopup)
         }
         handleAppendToData={(inputName, object) =>
           appendToData(inputName, object)
         }
+        handleTogglePopup={() => togglePopup()}
       />
       <PDFFile />
       {popup.isShown && (
@@ -233,15 +298,22 @@ const Container = () => {
             changeData(type, input, value)
           }
           data={data}
-          handleChangePopup={(isShown, inputName) =>
-            changePopup(isShown, inputName)
+          handleChangePopup={(isShown, inputName, index, addData, newPopup) =>
+            changePopup(isShown, inputName, index, addData, newPopup)
           }
           popup={popup}
           handleAppendToData={(inputName, object) =>
             appendToData(inputName, object)
           }
-          handleAppendMiniview={(index, miniView) => appendMiniView(index, miniView)}
+          handleAppendMiniview={(index, miniView) =>
+            appendMiniView(index, miniView)
+          }
           dropdowns={dropdowns}
+          handleChangeDataList={(type, index, inputName, value) =>
+            changeDataList(type, index, inputName, value)
+          }
+          handleTogglePopup={() => togglePopup()}
+          handleDeletePopup={(type, index) => deletePopup(type, index)}
         />
       )}
     </div>

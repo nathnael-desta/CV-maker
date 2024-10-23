@@ -19,8 +19,16 @@ const Input = ({
   handleChangeDescription,
   handleChangePopup,
   popup,
+  handleTogglePopup
 }) => {
-  const { name: icon, alt: iconAlt, title, droppedDown, type, miniViews } = dropdown;
+  const {
+    name: icon,
+    alt: iconAlt,
+    title,
+    droppedDown,
+    type,
+    miniViews,
+  } = dropdown;
 
   const componentMap = {
     FullInput,
@@ -61,13 +69,38 @@ const Input = ({
           />
         </div>
       </div>
-      {droppedDown && miniViews.map((miniView) => <MiniView title={miniView.name ? miniView.name : miniView.company ? miniView.company : miniView.skillName ? miniView.skillName : miniView.title ? miniView.title : miniView.interestName ? miniView.interestName : miniView.languageName ? miniView.languageName : ';)'}/>)}
+      {Array.isArray(data[type]) && droppedDown &&
+        data[type].map((item, i) => (
+          <MiniView
+            key={item.id}
+            handleTogglePopup={handleTogglePopup}
+            title={
+              data[type][i].name
+                ? data[type][i].name
+                : data[type][i].company
+                ? data[type][i].company
+                : data[type][i].skillName
+                ? data[type][i].skillName
+                : data[type][i].title
+                ? data[type][i].title
+                : data[type][i].interestName
+                ? data[type][i].interestName
+                : data[type][i].languageName
+                ? data[type][i].languageName
+                : ""
+            }
+            popup={popup}
+            handleChangePopup={handleChangePopup}
+            type={type}
+            index={i}
+          />
+        ))}
       {droppedDown &&
         arrangements[type].map((item, index) => {
           const Component = componentMap[item.inputKind];
           return (
             <Component
-              key={index}
+              key={item.id}
               from="input"
               {...item.props}
               handleChangeData={handleChangeData}

@@ -8,7 +8,7 @@ const Description = ({ handleChangeDescription, type, data }) => {
     }
 
     return (
-        <textarea className={DescriptionCss.text} name="" id="" placeholder="Talk about yourself..." onChange={handleInputChange} value={data[type]}></textarea>
+        <textarea className={DescriptionCss.text} name="" id="" placeholder="Talk about yourself..." onChange={handleInputChange} value={data[type].text}></textarea>
     )
 }
 

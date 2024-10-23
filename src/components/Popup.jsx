@@ -1,4 +1,4 @@
-import { popups } from "../Data";
+import { popupFormats } from "../Data";
 import PopupCss from "../styles/Popup.module.css";
 import FullInput from "./FullInput";
 import HalfInput from "./HalfInput";
@@ -7,7 +7,8 @@ import SmallView from "./SmallView";
 import ListItem from "./ListItem";
 import Add from "./Add";
 import Confirm from "./Confirm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TextView from "./TextView";
 
 const Popup = ({
   handleChangeData,
@@ -16,7 +17,10 @@ const Popup = ({
   popup,
   handleAppendToData,
   handleAppendMiniview,
-  dropdowns
+  dropdowns,
+  handleChangeDataList,
+  handleTogglePopup,
+  handleDeletePopup,
 }) => {
   const componentMap = {
     FullInput,
@@ -26,8 +30,9 @@ const Popup = ({
     ListItem,
     Add,
     Confirm,
+    TextView
   };
-  const [popupData, setPopupData] = useState(popups[popup.input].data);
+  const [popupData, setPopupData] = useState(popupFormats[popup.input].data);
 
   const changePopupData = (inputName, value) => {
     setPopupData((prevPopupData) => ({
@@ -43,14 +48,20 @@ const Popup = ({
           className={PopupCss.close}
           src="src/assets/images/Close.svg"
           alt="close"
-          onClick={() => handleChangePopup(false)}
+          onClick={() => {
+            handleTogglePopup();
+            if (popup.newPopup) {
+              handleDeletePopup(popup.input, popup.index);
+            }
+          }}
         />
-        {popups[popup.input].inputs.map((item, index) => {
+        {popupFormats[popup.input].inputs.map((item, index) => {
           const Component = componentMap[item.inputKind];
 
           return (
             <Component
-              key={index}
+              key={item.id}
+              index={popup.index}
               from="popup"
               {...item.props}
               data={data}
@@ -61,34 +72,16 @@ const Popup = ({
               handleAppendToData={handleAppendToData}
               popupData={popupData}
               handleChangePopup={handleChangePopup}
-              handleAppendMiniview={item.inputKind== "Confirm" ? handleAppendMiniview : undefined}
-              dropdowns={item.inputKind== "Confirm" ? dropdowns : undefined}
+              handleAppendMiniview={
+                item.inputKind == "Confirm" ? handleAppendMiniview : undefined
+              }
+              dropdowns={item.inputKind == "Confirm" ? dropdowns : undefined}
+              handleChangeDataList={handleChangeDataList}
+              handleTogglePopup={handleTogglePopup}
+              popup={popup}
             />
           );
         })}
-        {/* <FullInput
-          text="Field"
-          inputName="firstName"
-          handleChangeData={handleChangeData}
-          type="general"
-          data={data}
-        />
-        <FullInput
-          text="Institution"
-          inputName="firstName"
-          handleChangeData={handleChangeData}
-          type="general"
-          data={data}
-        />
-        <HalfInput
-          firstText="Start"
-          secondText="End"
-          inputName1="afd"
-          inputName2="adfs"
-          data={data}
-          type="general"
-          handleChangeData={handleChangeData}
-        /> */}
       </div>
     </div>
   );
