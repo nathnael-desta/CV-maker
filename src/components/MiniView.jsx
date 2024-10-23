@@ -7,6 +7,7 @@ const MiniView = ({
   handleChangePopup,
   type,
   index,
+  data
 }) => {
   return (
     <div
@@ -32,7 +33,8 @@ const MiniView = ({
           alt="options"
           onClick={(e) => {
             e.stopPropagation();
-            handleChangePopup(popup.isShown, "delete", 1, false, false);
+            console.log("the id is ......................................", data[type][index].id)
+            handleChangePopup(popup.isShown, 'delete', -1, false, false, true, data[type][index].id, type);
             handleTogglePopup();
           }}
         />

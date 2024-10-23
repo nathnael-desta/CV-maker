@@ -79,6 +79,7 @@ const Popup = ({
               handleChangeDataList={handleChangeDataList}
               handleTogglePopup={handleTogglePopup}
               popup={popup}
+              handleDeletePopup={handleDeletePopup}
             />
           );
         })}

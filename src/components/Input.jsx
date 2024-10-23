@@ -19,7 +19,8 @@ const Input = ({
   handleChangeDescription,
   handleChangePopup,
   popup,
-  handleTogglePopup
+  handleTogglePopup,
+  handleDeletePopup
 }) => {
   const {
     name: icon,
@@ -93,6 +94,8 @@ const Input = ({
             handleChangePopup={handleChangePopup}
             type={type}
             index={i}
+            handleDeletePopup={handleDeletePopup}
+            data={data}
           />
         ))}
       {droppedDown &&

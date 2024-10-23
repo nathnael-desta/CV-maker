@@ -174,7 +174,9 @@ const Container = () => {
     isShown: false,
     input: "",
     index: 0,
-    newPopup: true
+    newPopup: true,
+    id: '',
+    nextType: ''
   });
 
   const toggleDroppedDown = (id) => {
@@ -213,19 +215,35 @@ const Container = () => {
     }));
   };
 
-  const changePopup = (isShown, type, index, addData=true, newPopup=true) => {
-    setPopup((prevPopup) => ({
-      ...prevPopup,
-      isShown: isShown,
-      input: type,
-      index: index,
-      newPopup: newPopup
-    }));
+  const changePopup = (isShown, type, index, addData=true, newPopup=true, isDeletion=false, id='', nextType='') => {
+    const newId = uuidv4();
+    
+    if (!isDeletion) {
+      setPopup((prevPopup) => ({
+        ...prevPopup,
+        isShown: isShown,
+        input: type,
+        index: index,
+        newPopup: newPopup,
+        id: newId
+      }));
+    } else {
+      setPopup((prevPopup) => ({
+        ...prevPopup,
+        isShown: isShown,
+        input: type,
+        index: index,
+        newPopup: newPopup,
+        id: id,
+        nextType: nextType
+      }));
+    }
+
 
     if (addData) {
       setData((prevData) => ({
         ...prevData,
-        [type]: [...prevData[type], {...popupFormats[type].data, id: uuidv4()}],
+        [type]: [...prevData[type], {...popupFormats[type].data, id: newId}],
       }));
     }
   };
@@ -257,7 +275,7 @@ const Container = () => {
   const deletePopup = (type, index) => {
     setData((prevData) => ({
       ...prevData,
-      [type]: prevData[type].filter((item, i) => i !== index),
+      [type]: prevData[type].filter((item, i) => item.id !== popup.id),
     }));
   };
 
@@ -283,13 +301,14 @@ const Container = () => {
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
-        handleChangePopup={(isShown, inputName, index, addData, newPopup) =>
-          changePopup(isShown, inputName, index, addData, newPopup)
+        handleChangePopup={(isShown, inputName, index, addData, newPopup, isDeletion, id, nextType) =>
+          changePopup(isShown, inputName, index, addData, newPopup, isDeletion, id, nextType)
         }
         handleAppendToData={(inputName, object) =>
           appendToData(inputName, object)
         }
         handleTogglePopup={() => togglePopup()}
+        handleDeletePopup={(type, index) => deletePopup(type, index)}
       />
       <PDFFile />
       {popup.isShown && (
