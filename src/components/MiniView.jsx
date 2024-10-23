@@ -10,7 +10,7 @@ const MiniView = ({ title }) => {
             </div>
             <div className={MiniViewCss.right}>
                 <img src="src/assets/images/eye.svg" alt="unshow" />
-                <img src="src/assets/images/dots.svg" alt="options" />
+                <img className={MiniViewCss.close} src="src/assets/images/Close.svg" alt="options" />
             </div>
         </div>
     )
