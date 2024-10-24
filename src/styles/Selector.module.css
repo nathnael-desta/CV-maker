@@ -1,18 +1,27 @@
 .container {
-    border: 1px solid #112131;
+    border: 2px solid #112131;
     border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}   
+
+.top {
     display: flex;
     justify-content: space-between;
     padding: 10px 15px;
     align-items: center;
-    cursor: pointer;
-}   
+}
 
 .left {
     display: flex;
     gap: 20px;
     align-items: center;
 
+}
+
+.title {
+    width: 40px;
 }
 
 .arrow {

@@ -10,6 +10,16 @@ const Editor = (props) => {
 
   const [nav, setNav] = useState("Info");
 
+  const [designDropdowns, setDesignDropdowns] = useState([false, false]);
+
+  const toggleDesignDropdown = (i) => {
+    setDesignDropdowns((prevDesignDropdowns) =>
+      prevDesignDropdowns.map((item, index) =>
+        index == i ? !prevDesignDropdowns[index] : false
+      )
+    );
+  };
+
   const changeNav = (newNav) => {
     setNav((prevNav) => newNav);
   };
@@ -73,12 +83,12 @@ const Editor = (props) => {
               </div>
             </DesignItem>
             <DesignItem title="Font">
-              <Selector title="Family" value="Helvetica" />
-              <Selector title="Size" value="Medium" />
+              <Selector title="Family" value="Helvetica" kind="FontDropdowns" handleToggleDesignDropdowns={() => toggleDesignDropdown(0)} droppedDown={designDropdowns[0]}/>
+              <Selector title="Size" value="Medium" kind="Sizes" handleToggleDesignDropdowns={() => toggleDesignDropdown(1)} droppedDown={designDropdowns[1]}/>
             </DesignItem>
             <DesignItem title="Color">
-              <Selector title="Accent" value="" />
-              <Selector title="Text" value="" />
+              <Selector title="Accent" value="" kind="FontDropdowns" />
+              <Selector title="Text" value="" kind="Sizes" />
             </DesignItem>
           </>
         )}

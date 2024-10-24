@@ -1,0 +1,18 @@
+.container {
+    width: 90%;
+    height: 20px;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.container:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.bottomLine {
+    border-bottom: 1px solid #112131;
+}
+
