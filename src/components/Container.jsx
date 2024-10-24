@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import Editor from "./Editor";
 import ContainerCss from "../styles/Container.module.css";
 import PDFFile from "./PDFFile";
@@ -16,7 +16,7 @@ const Container = () => {
       id: uuidv4(),
     },
     profile: {
-      text: '',
+      text: "",
       id: uuidv4(),
     },
     contact: {
@@ -175,8 +175,8 @@ const Container = () => {
     input: "",
     index: 0,
     newPopup: true,
-    id: '',
-    nextType: ''
+    id: "",
+    nextType: "",
   });
 
   const toggleDroppedDown = (id) => {
@@ -211,13 +211,22 @@ const Container = () => {
   const changeDescription = (group, value) => {
     setData((prevData) => ({
       ...prevData,
-      [group]: { text: value }
+      [group]: { text: value },
     }));
   };
 
-  const changePopup = (isShown, type, index, addData=true, newPopup=true, isDeletion=false, id='', nextType='') => {
+  const changePopup = (
+    isShown,
+    type,
+    index,
+    addData = true,
+    newPopup = true,
+    isDeletion = false,
+    id = "",
+    nextType = ""
+  ) => {
     const newId = uuidv4();
-    
+
     if (!isDeletion) {
       setPopup((prevPopup) => ({
         ...prevPopup,
@@ -225,7 +234,7 @@ const Container = () => {
         input: type,
         index: index,
         newPopup: newPopup,
-        id: newId
+        id: newId,
       }));
     } else {
       setPopup((prevPopup) => ({
@@ -235,15 +244,14 @@ const Container = () => {
         index: index,
         newPopup: newPopup,
         id: id,
-        nextType: nextType
+        nextType: nextType,
       }));
     }
-
 
     if (addData) {
       setData((prevData) => ({
         ...prevData,
-        [type]: [...prevData[type], {...popupFormats[type].data, id: newId}],
+        [type]: [...prevData[type], { ...popupFormats[type].data, id: newId }],
       }));
     }
   };
@@ -300,17 +308,34 @@ const Container = () => {
         handleChangeDescription={(type, value) =>
           changeDescription(type, value)
         }
-        handleChangePopup={(isShown, inputName, index, addData, newPopup, isDeletion, id, nextType) =>
-          changePopup(isShown, inputName, index, addData, newPopup, isDeletion, id, nextType)
+        handleChangePopup={(
+          isShown,
+          inputName,
+          index,
+          addData,
+          newPopup,
+          isDeletion,
+          id,
+          nextType
+        ) =>
+          changePopup(
+            isShown,
+            inputName,
+            index,
+            addData,
+            newPopup,
+            isDeletion,
+            id,
+            nextType
+          )
         }
         handleAppendToData={(inputName, object) =>
           appendToData(inputName, object)
         }
         handleTogglePopup={() => togglePopup()}
         handleDeletePopup={(type, index) => deletePopup(type, index)}
-      >
-        <Nav />
-        </ Editor>
+      />
+
       <PDFFile />
       {popup.isShown && (
         <Popup

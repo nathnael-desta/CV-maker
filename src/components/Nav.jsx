@@ -1,11 +1,11 @@
 import NavButton from "./NavButton";
 import NavCss from "../styles/Nav.module.css";
 
-const Nav = () => {
+const Nav = ({ handleChangeNav }) => {
   return (
     <div className={NavCss.navbar}>
-      <NavButton text="Design" />
-      <NavButton text="Info" />
+      <NavButton text="Design" handleChangeNav={handleChangeNav}/>
+      <NavButton text="Info" handleChangeNav={handleChangeNav}/>
     </div>
   );
 };
