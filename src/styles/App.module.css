@@ -5,3 +5,7 @@
     padding: 30px;
 
 }
+
+.app::-webkit-scrollbar {
+    display: none;
+  }
