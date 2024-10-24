@@ -11,9 +11,12 @@ const FontDropdowns = [
 ];
 const Sizes = ["Very Small", "Small", "Medium", "Large", "Very Large"];
 
-const Selector = ({ title, kind, handleToggleDesignDropdowns, droppedDown }) => {
-
-
+const Selector = ({
+  title,
+  kind,
+  handleToggleDesignDropdowns,
+  droppedDown,
+}) => {
   const [index, setIndex] = useState(2);
 
   const kinds = {
@@ -29,28 +32,66 @@ const Selector = ({ title, kind, handleToggleDesignDropdowns, droppedDown }) => 
     setDroppedDown((prevDroppedDown) => !prevDroppedDown);
   };
 
+  const [colorValue, setColorValue] = useState("#112131");
+
+  const handleColorChange = (e) => {
+    setColorValue(e.target.value)
+  }
+
+  const colorStyle = {
+    margin: "0",
+  padding: "0",
+  border: "none",
+  outline: "none",
+  background: "none",
+  font: "inherit",
+  color: 'inherit',
+  appearance: "none",
+    width: "30px",
+    height: "30px",
+    borderRadius: "50%", // Use camelCase
+    cursor: "pointer",
+    backgroundColor: colorValue, // Make sure the value is a string
+  };
+
   return (
-    <div className={SelectorCss.container}>
-      <div className={SelectorCss.top} onClick={() => handleToggleDesignDropdowns()}>
+    <div
+      className={`${SelectorCss.container} ${
+        kind !== "Color" ? SelectorCss.pointer : null
+      }`}
+    >
+      <div
+        className={SelectorCss.top}
+        onClick={() => handleToggleDesignDropdowns()}
+      >
         <div className={SelectorCss.left}>
           <div className={SelectorCss.title}>{title}</div>
           <img src="src/assets/images/dots.svg" alt="devider" />
-          <div className="value">{kinds[kind][index]}</div>
+          {kind !== "Color" && (
+            <div className="value">{kinds[kind][index]}</div>
+          )}
+          {kind == "Color" && (
+            <>
+              <input style={colorStyle} className={SelectorCss.color} type="color"  onChange={() => handleColorChange() }/>
+            </>
+          )}
         </div>
-        <img
-          className={SelectorCss.arrow}
-          src="src/assets/images/rightArrow.png"
-          alt="expand"
-        />
+        {kind !== "Color" && (
+          <img
+            className={SelectorCss.arrow}
+            src="src/assets/images/rightArrow.png"
+            alt="expand"
+          />
+        )}
       </div>
       {droppedDown &&
+        kind !== "Color" &&
         kinds[kind].map((item, i) => (
           <SelectionItem
             key={i}
             title={item}
             handleSetIndex={() => changeIndex(i)}
             last={i == kinds[kind].length - 1}
-            
           />
         ))}
     </div>

@@ -87,8 +87,8 @@ const Editor = (props) => {
               <Selector title="Size" value="Medium" kind="Sizes" handleToggleDesignDropdowns={() => toggleDesignDropdown(1)} droppedDown={designDropdowns[1]}/>
             </DesignItem>
             <DesignItem title="Color">
-              <Selector title="Accent" value="" kind="FontDropdowns" />
-              <Selector title="Text" value="" kind="Sizes" />
+              <Selector title="Accent" value="" kind="Color" />
+              <Selector title="Text" value="" kind="Color" />
             </DesignItem>
           </>
         )}
