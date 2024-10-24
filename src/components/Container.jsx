@@ -289,7 +289,6 @@ const Container = () => {
 
   return (
     <div className={ContainerCss.container}>
-      <Nav />
       <Editor
         data={data}
         dropdowns={dropdowns}
@@ -309,7 +308,9 @@ const Container = () => {
         }
         handleTogglePopup={() => togglePopup()}
         handleDeletePopup={(type, index) => deletePopup(type, index)}
-      />
+      >
+        <Nav />
+        </ Editor>
       <PDFFile />
       {popup.isShown && (
         <Popup

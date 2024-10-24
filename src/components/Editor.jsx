@@ -8,6 +8,7 @@ const Editor = (props) => {
 
   return (
     <div className={EditorCss.editor}>
+      {props.children}
       <div className={EditorCss.inputs}>
         {dropdowns.map((dropdown) => (
           <Input
