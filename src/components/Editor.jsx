@@ -4,6 +4,7 @@ import Input from "./Input";
 import Nav from "./Nav";
 import DesignItem from "./DesignItem";
 import Selector from "./Selector";
+import { designItems } from "../Data";
 
 const Editor = (props) => {
   const { dropdowns, toggleDroppedDown } = props;
@@ -18,10 +19,6 @@ const Editor = (props) => {
     textColor: "#112131",
     designDropdowns: [false, false],
   });
-
-  useEffect(() => {
-    console.log(designConfigs);
-  }, [designConfigs]);
 
   const changeDesignConfigs = (type, value) => {
     if (type !== "designDropdowns") {
@@ -43,52 +40,7 @@ const Editor = (props) => {
     setNav(newNav);
   };
 
-  const designItems = {
-    layoutImgs: [
-      {
-        layout: 0,
-        src: "src/assets/images/topColoredSplit.svg",
-        alt: "top colored split bottom",
-      },
-      {
-        layout: 1,
-        src: "src/assets/images/right.svg",
-        alt: "right colored",
-      },
-      {
-        layout: 2,
-        src: "src/assets/images/left.svg",
-        alt: "left colored",
-      },
-      {
-        layout: 3,
-        src: "src/assets/images/topColored.svg",
-        alt: "top colored",
-      },
-      {
-        layout: 4,
-        src: "src/assets/images/top.svg",
-        alt: "top not colored",
-      },
-      {
-        layout: 5,
-        src: "src/assets/images/topSplit.svg",
-        alt: "top not colored split bottom",
-      },
-    ],
-    fontSelectors: [
-      {
-        title: "Family",
-        kind: "fontFamily",
-        dropdown: 0,
-      },
-      {
-        title: "Size",
-        kind: "fontSize",
-        dropdown: 1,
-      },
-    ],
-  };
+  
 
   return (
     <div className={EditorCss.editor}>
@@ -141,25 +93,17 @@ const Editor = (props) => {
               ))}
             </DesignItem>
             <DesignItem title="Color">
-              <Selector
-                
-                title="Accent"
-                value=""
-                kind="accentColor"
-                designConfigs={designConfigs}
-                handleChangeDesignConfigs={(type, value) =>
-                  changeDesignConfigs(type, value)
-                }
-              />
-              <Selector
-                title="Text"
-                value=""
-                kind="textColor"
-                designConfigs={designConfigs}
-                handleChangeDesignConfigs={(type, value) =>
-                  changeDesignConfigs(type, value)
-                }
-              />
+              {designItems.colorSelectors.map((item, index) => (
+                <Selector
+                key={index}
+                  title={item.title}
+                  kind={item.kind}
+                  designConfigs={designConfigs}
+                  handleChangeDesignConfigs={(type, value) =>
+                    changeDesignConfigs(type, value)
+                  }
+                />
+              ))}
             </DesignItem>
           </>
         )}

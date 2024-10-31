@@ -308,3 +308,60 @@ export const popupFormats = {
         ]
     }
 }
+
+export const designItems = {
+    layoutImgs: [
+      {
+        layout: 0,
+        src: "src/assets/images/topColoredSplit.svg",
+        alt: "top colored split bottom",
+      },
+      {
+        layout: 1,
+        src: "src/assets/images/right.svg",
+        alt: "right colored",
+      },
+      {
+        layout: 2,
+        src: "src/assets/images/left.svg",
+        alt: "left colored",
+      },
+      {
+        layout: 3,
+        src: "src/assets/images/topColored.svg",
+        alt: "top colored",
+      },
+      {
+        layout: 4,
+        src: "src/assets/images/top.svg",
+        alt: "top not colored",
+      },
+      {
+        layout: 5,
+        src: "src/assets/images/topSplit.svg",
+        alt: "top not colored split bottom",
+      },
+    ],
+    fontSelectors: [
+      {
+        title: "Family",
+        kind: "fontFamily",
+        dropdown: 0,
+      },
+      {
+        title: "Size",
+        kind: "fontSize",
+        dropdown: 1,
+      },
+    ],
+    colorSelectors: [
+      {
+        title: "Accent",
+        kind: "accentColor",
+      },
+      {
+        title: "Text",
+        kind: "textColor",
+      },
+    ],
+  };
