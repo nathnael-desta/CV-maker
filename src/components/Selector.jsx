@@ -2,81 +2,84 @@ import { useEffect, useState } from "react";
 import SelectorCss from "../styles/Selector.module.css";
 import SelectionItem from "./SelectionItem";
 
-const FontDropdowns = [
+const fontFamily = [
   "Helvetica",
   "Open Sans",
   "Robotica",
   "Comic Sans",
   "Pretentious",
 ];
-const Sizes = ["Very Small", "Small", "Medium", "Large", "Very Large"];
+const fontSize = ["Very Small", "Small", "Medium", "Large", "Very Large"];
 
 const Selector = ({
   title,
   kind,
   handleToggleDesignDropdowns,
   droppedDown,
+  designConfigs,
+  handleChangeDesignConfigs
 }) => {
   const [index, setIndex] = useState(2);
 
   const kinds = {
-    FontDropdowns: FontDropdowns,
-    Sizes: Sizes,
+    fontFamily: fontFamily,
+    fontSize: fontSize,
   };
 
   const changeIndex = (newIndex) => {
     setIndex(newIndex);
   };
 
-  const toggleDroppedDown = () => {
-    setDroppedDown((prevDroppedDown) => !prevDroppedDown);
-  };
-
   const [colorValue, setColorValue] = useState("#112131");
 
   const handleColorChange = (e) => {
-    setColorValue(e.target.value)
-  }
+    handleChangeDesignConfigs(kind, e.target.value);
+  };
 
   const colorStyle = {
     margin: "0",
-  padding: "0",
-  border: "none",
-  outline: "none",
-  background: "none",
-  font: "inherit",
-  color: 'inherit',
-  appearance: "none",
+    padding: "0",
+    border: "none",
+    outline: "none",
+    background: "none",
+    font: "inherit",
+    color: "inherit",
+    appearance: "none",
     width: "30px",
     height: "30px",
     borderRadius: "50%", // Use camelCase
     cursor: "pointer",
-    backgroundColor: colorValue, // Make sure the value is a string
+    backgroundColor: designConfigs[kind], // Make sure the value is a string
   };
 
   return (
     <div
       className={`${SelectorCss.container} ${
-        kind !== "Color" ? SelectorCss.pointer : null
+        (kind !== "textColor" && kind != "accentColor") ? SelectorCss.pointer : null
       }`}
     >
       <div
         className={SelectorCss.top}
-        onClick={() => handleToggleDesignDropdowns()}
+        onClick={(kind !== "textColor" && kind != "accentColor") ? () => handleToggleDesignDropdowns(): null}
       >
         <div className={SelectorCss.left}>
           <div className={SelectorCss.title}>{title}</div>
           <img src="src/assets/images/dots.svg" alt="devider" />
-          {kind !== "Color" && (
-            <div className="value">{kinds[kind][index]}</div>
+          {kind !== "textColor" && kind != "accentColor" && (
+            <div className="value">{title == "Family" ? designConfigs.fontFamily : designConfigs.fontSize}</div>
           )}
-          {kind == "Color" && (
+          {(kind == "textColor" || kind == "accentColor") && (
             <>
-              <input style={colorStyle} className={SelectorCss.color} type="color"  onChange={() => handleColorChange() }/>
+              <input
+                style={colorStyle}
+                className={SelectorCss.color}
+                type="color"
+                onChange={(e) => handleColorChange(e)}
+              />
             </>
           )}
         </div>
-        {kind !== "Color" && (
+        {kind !== "textColor" && kind != "accentColor" && (
           <img
             className={SelectorCss.arrow}
             src="src/assets/images/rightArrow.png"
@@ -85,13 +88,15 @@ const Selector = ({
         )}
       </div>
       {droppedDown &&
-        kind !== "Color" &&
+        (kind !== "textColor" && kind != "accentColor") &&
         kinds[kind].map((item, i) => (
           <SelectionItem
             key={i}
             title={item}
             handleSetIndex={() => changeIndex(i)}
+            handleChangeDesignConfigs={handleChangeDesignConfigs}
             last={i == kinds[kind].length - 1}
+            kind={kind}
           />
         ))}
     </div>

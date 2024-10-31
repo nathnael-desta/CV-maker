@@ -10,21 +10,85 @@ const Editor = (props) => {
 
   const [nav, setNav] = useState("Info");
 
-  const [designDropdowns, setDesignDropdowns] = useState([false, false]);
+  const [designConfigs, setDesignConfigs] = useState({
+    layout: 0,
+    fontFamily: "Comic Sans",
+    fontSize: "Medium",
+    accentColor: "#112131",
+    textColor: "#112131",
+    designDropdowns: [false, false],
+  });
 
-  const toggleDesignDropdown = (i) => {
-    setDesignDropdowns((prevDesignDropdowns) =>
-      prevDesignDropdowns.map((item, index) =>
-        index == i ? !prevDesignDropdowns[index] : false
-      )
-    );
+  useEffect(() => {
+    console.log(designConfigs);
+  }, [designConfigs]);
+
+  const changeDesignConfigs = (type, value) => {
+    if (type !== "designDropdowns") {
+      setDesignConfigs((prevDesignConfigs) => ({
+        ...prevDesignConfigs,
+        [type]: value,
+      }));
+    } else {
+      setDesignConfigs((prevDesignConfigs) => ({
+        ...prevDesignConfigs,
+        designDropdowns: prevDesignConfigs.designDropdowns.map((item, index) =>
+          index == value ? !item : false
+        ),
+      }));
+    }
   };
 
   const changeNav = (newNav) => {
-    setNav((prevNav) => newNav);
+    setNav(newNav);
   };
 
-  const [layoutChosen, setLayoutChosen] = useState(0);
+  const designItems = {
+    layoutImgs: [
+      {
+        layout: 0,
+        src: "src/assets/images/topColoredSplit.svg",
+        alt: "top colored split bottom",
+      },
+      {
+        layout: 1,
+        src: "src/assets/images/right.svg",
+        alt: "right colored",
+      },
+      {
+        layout: 2,
+        src: "src/assets/images/left.svg",
+        alt: "left colored",
+      },
+      {
+        layout: 3,
+        src: "src/assets/images/topColored.svg",
+        alt: "top colored",
+      },
+      {
+        layout: 4,
+        src: "src/assets/images/top.svg",
+        alt: "top not colored",
+      },
+      {
+        layout: 5,
+        src: "src/assets/images/topSplit.svg",
+        alt: "top not colored split bottom",
+      },
+    ],
+    fontSelectors: [
+      {
+        title: "Family",
+        kind: "fontFamily",
+        dropdown: 0,
+      },
+      {
+        title: "Size",
+        kind: "fontSize",
+        dropdown: 1,
+      },
+    ],
+  };
 
   return (
     <div className={EditorCss.editor}>
@@ -44,51 +108,58 @@ const Editor = (props) => {
           <>
             <DesignItem title="Layout">
               <div className={EditorCss.layoutGrid}>
-                <img
-                  className={layoutChosen == 0 ? EditorCss.chosenImg : null}
-                  src="src/assets/images/topColoredSplit.svg"
-                  alt="top colored split bottom"
-                  onClick={() => setLayoutChosen(0)}
-                />
-                <img
-                  className={layoutChosen == 1 ? EditorCss.chosenImg : null}
-                  src="src/assets/images/right.svg"
-                  alt="right colored"
-                  onClick={() => setLayoutChosen(1)}
-                />
-                <img
-                  className={layoutChosen == 2 ? EditorCss.chosenImg : null}
-                  src="src/assets/images/left.svg"
-                  alt="left colored"
-                  onClick={() => setLayoutChosen(2)}
-                />
-                <img
-                  className={layoutChosen == 3 ? EditorCss.chosenImg : null}
-                  src="src/assets/images/topColored.svg"
-                  alt="top colored"
-                  onClick={() => setLayoutChosen(3)}
-                />
-                <img
-                  className={layoutChosen == 4 ? EditorCss.chosenImg : null}
-                  src="src/assets/images/top.svg"
-                  alt="top not colored"
-                  onClick={() => setLayoutChosen(4)}
-                />
-                <img
-                  className={layoutChosen == 5 ? EditorCss.chosenImg : null}
-                  src="src/assets/images/topSplit.svg"
-                  alt="top not colored split bottom"
-                  onClick={() => setLayoutChosen(5)}
-                />
+                {designItems.layoutImgs.map((item) => (
+                  <img
+                    key={item.layout}
+                    className={
+                      designConfigs.layout == item.layout
+                        ? EditorCss.chosenImg
+                        : null
+                    }
+                    src={item.src}
+                    alt={item.alt}
+                    onClick={() => changeDesignConfigs("layout", item.layout)}
+                  />
+                ))}
               </div>
             </DesignItem>
             <DesignItem title="Font">
-              <Selector title="Family" value="Helvetica" kind="FontDropdowns" handleToggleDesignDropdowns={() => toggleDesignDropdown(0)} droppedDown={designDropdowns[0]}/>
-              <Selector title="Size" value="Medium" kind="Sizes" handleToggleDesignDropdowns={() => toggleDesignDropdown(1)} droppedDown={designDropdowns[1]}/>
+              {designItems.fontSelectors.map((item) => (
+                <Selector
+                  key={item.dropdown}
+                  title={item.title}
+                  kind={item.kind}
+                  handleToggleDesignDropdowns={() =>
+                    changeDesignConfigs("designDropdowns", item.dropdown)
+                  }
+                  droppedDown={designConfigs.designDropdowns[item.dropdown]}
+                  designConfigs={designConfigs}
+                  handleChangeDesignConfigs={(type, value) =>
+                    changeDesignConfigs(type, value)
+                  }
+                />
+              ))}
             </DesignItem>
             <DesignItem title="Color">
-              <Selector title="Accent" value="" kind="Color" />
-              <Selector title="Text" value="" kind="Color" />
+              <Selector
+                
+                title="Accent"
+                value=""
+                kind="accentColor"
+                designConfigs={designConfigs}
+                handleChangeDesignConfigs={(type, value) =>
+                  changeDesignConfigs(type, value)
+                }
+              />
+              <Selector
+                title="Text"
+                value=""
+                kind="textColor"
+                designConfigs={designConfigs}
+                handleChangeDesignConfigs={(type, value) =>
+                  changeDesignConfigs(type, value)
+                }
+              />
             </DesignItem>
           </>
         )}
