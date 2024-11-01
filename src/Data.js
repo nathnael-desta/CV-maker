@@ -42,6 +42,11 @@ export const arrangements = {
             inputKind: 'FullInput',
             props: { text: 'Phone No', inputName: 'phoneNo' },
             id: uuidv4(),
+        },
+        {
+            inputKind: 'FullInput',
+            props: { text: 'LinkedIn', inputName: 'linkedIn' },
+            id: uuidv4(),
         }
     ],
     education: [

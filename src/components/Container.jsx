@@ -24,6 +24,7 @@ const Container = () => {
       adress: "",
       email: "",
       phoneNo: "",
+      linkedIn: "",
       id: uuidv4(),
     },
     education: [
