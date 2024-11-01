@@ -40,6 +40,7 @@ const Container = () => {
       // {
       //     company: '',
       //     postion: '',
+      //     location: '',
       //     details: '',
       //     start: '',
       //     end: ''

@@ -153,6 +153,11 @@ export const popupFormats = {
             },
             {
                 inputKind: 'FullInput',
+                props: { text: 'Location', inputName: 'location' },
+                id: uuidv4(),
+            },
+            {
+                inputKind: 'FullInput',
                 props: { text: 'Details', inputName: 'details' },
                 id: uuidv4(),
             },
