@@ -6,6 +6,7 @@ import Nav from "./Nav";
 import { useState, useEffect } from "react";
 import Popup from "./Popup";
 import { popupFormats } from "../Data";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const Container = () => {
   const [data, setData] = useState({
@@ -76,6 +77,10 @@ const Container = () => {
       // }
     ],
   });
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const [dropdowns, setDropdowns] = useState([
     {
@@ -335,8 +340,11 @@ const Container = () => {
         handleTogglePopup={() => togglePopup()}
         handleDeletePopup={(type, index) => deletePopup(type, index)}
       />
-
       <PDFFile />
+      {/* <PDFDownloadLink document={<PDFFile />} fileName="CV.pdf" className={ContainerCss.PDFDownloadLink}>
+          {({ loading }) => (loading ? "Loading document..." : "Download PDF")}
+        </PDFDownloadLink> */}
+
       {popup.isShown && (
         <Popup
           handleChangeData={(type, input, value) =>

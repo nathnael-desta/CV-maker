@@ -3,8 +3,13 @@
     height: 1580px;
     width: 1117px;
     overflow-y: auto;
+
 }
 
 .document::-webkit-scrollbar {
     display: none;
   }
+
+.main {
+    padding: 30px;
+}

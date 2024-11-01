@@ -12,3 +12,17 @@
 .container::-webkit-scrollbar {
     display: none;
   }
+
+.PDFContainer {
+    position: relative;
+    background-color: white;
+    height: 1580px;
+    width: 1117px;
+    overflow-y: auto;
+}
+
+.PDFDownloadLink {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
