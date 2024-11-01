@@ -2,6 +2,8 @@ import { Page, View, Text, Document, StyleSheet } from "@react-pdf/renderer";
 import BasicInfo from "./PDFElements/BasicInfo";
 import Profile from "./PDFElements/Profile";
 import PDFFileCss from "../styles/PDFFile.module.css";
+import Work from "./PDFElements/Work";
+import Education from "./PDFElements/Education";
 
 const styles = StyleSheet.create({
   document: {
@@ -28,6 +30,8 @@ const PDFFile = () => {
       <Page size="A4" style={styles.page}>
         <BasicInfo />
         <Profile />
+        <Work />
+        <Education />
       </Page>
     </Document>
   );
